@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Home } from 'lucide-react';
+import { Home, UserCog } from 'lucide-react';
 import { Button } from './ui/button';
 
 export function Header() {
@@ -15,8 +15,14 @@ export function Header() {
               EstateGraph
             </span>
           </Link>
-          <nav>
+          <nav className="flex items-center gap-2">
             <Button variant="ghost">Contact</Button>
+            <Button asChild variant="outline">
+              <Link href="/admin">
+                <UserCog />
+                Admin
+              </Link>
+            </Button>
           </nav>
         </div>
       </div>
