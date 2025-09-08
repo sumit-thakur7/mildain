@@ -85,8 +85,12 @@ export function AdminSidebar() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  <SidebarMenuSubButton>Sub Item 1</SidebarMenuSubButton>
-                  <SidebarMenuSubButton>Sub Item 2</SidebarMenuSubButton>
+                  <SidebarMenuSubButton asChild isActive={pathname.startsWith("/admin/rank-reward")}>
+                    <Link href="/admin/rank-reward">Rank & Reward</Link>
+                  </SidebarMenuSubButton>
+                  <SidebarMenuSubButton asChild isActive={pathname.startsWith("/admin/club-income")}>
+                    <Link href="/admin/club-income">Club Income</Link>
+                  </SidebarMenuSubButton>
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
