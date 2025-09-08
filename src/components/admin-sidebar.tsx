@@ -118,7 +118,7 @@ export function AdminSidebar() {
           </Collapsible>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/target")}>
-              <Link href="#">
+              <Link href="/admin/target">
                 <Target />
                 Target
               </Link>
@@ -126,7 +126,7 @@ export function AdminSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/support")}>
-              <Link href="#">
+              <Link href="/admin/support">
                 <LifeBuoy />
                 Customer Support
               </Link>
