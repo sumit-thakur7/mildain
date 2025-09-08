@@ -1,3 +1,5 @@
+"use client";
+
 import { getProperties } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DollarSign, Home, TrendingUp, Users } from 'lucide-react';
