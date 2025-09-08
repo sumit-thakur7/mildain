@@ -106,8 +106,12 @@ export function AdminSidebar() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  <SidebarMenuSubButton>Sub Item 1</SidebarMenuSubButton>
-                  <SidebarMenuSubButton>Sub Item 2</SidebarMenuSubButton>
+                  <SidebarMenuSubButton asChild isActive={pathname.startsWith("/admin/d-loyalty-bonus")}>
+                    <Link href="/admin/d-loyalty-bonus">D. Loyalty Bonus</Link>
+                  </SidebarMenuSubButton>
+                  <SidebarMenuSubButton asChild isActive={pathname.startsWith("/admin/t-loyalty-bonus")}>
+                    <Link href="/admin/t-loyalty-bonus">T. Loyalty Bonus</Link>
+                  </SidebarMenuSubButton>
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
