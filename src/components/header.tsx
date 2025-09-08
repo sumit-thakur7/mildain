@@ -17,6 +17,9 @@ export function Header() {
           </Link>
           <nav className="flex items-center gap-2">
             <Button variant="ghost">Contact</Button>
+            <Button variant="outline" asChild>
+              <Link href="/register">Register</Link>
+            </Button>
             <Button asChild>
               <Link href="/admin">
                 <UserCog />
