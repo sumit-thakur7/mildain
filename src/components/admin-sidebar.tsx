@@ -59,10 +59,10 @@ export function AdminSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/direct-income")}>
-              <Link href="#">
+            <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/direct-sponsor")}>
+              <Link href="/admin/direct-sponsor">
                 <DollarSign />
-                Direct Income
+                Direct Sponsor
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
