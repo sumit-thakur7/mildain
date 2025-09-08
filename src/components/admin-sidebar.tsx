@@ -68,7 +68,7 @@ export function AdminSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/team-income")}>
-              <Link href="#">
+              <Link href="/admin/team-income">
                 <Briefcase />
                 Team Income
               </Link>
