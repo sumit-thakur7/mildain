@@ -52,7 +52,7 @@ export function AdminSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname.startsWith("/admin/genology")}>
-              <Link href="#">
+              <Link href="/admin/genology">
                 <Users />
                 Genology
               </Link>
