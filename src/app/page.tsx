@@ -17,9 +17,14 @@ export default function MildainTrainingsHome() {
       <header className="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-md border-b border-gray-100 px-6 lg:px-16 h-20 flex items-center justify-between">
         <div className="flex items-center gap-10">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-tight text-slate-900">
-              Mildain<span className="text-primary">.</span>Trainings
-            </span>
+            <Image 
+              src="/images/logo/logo.webp" 
+              alt="Mildain Trainings Logo" 
+              width={180} 
+              height={50} 
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
             <Link href="/" className="text-primary hover:text-primary/80 transition-colors">Home</Link>
