@@ -18,13 +18,13 @@ export default function MildainTrainingsHome() {
         <div className="flex items-center gap-10">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl font-extrabold tracking-tight text-slate-900">
-              Mildain<span className="text-emerald-500">.</span>Trainings
+              Mildain<span className="text-primary">.</span>Trainings
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <Link href="/" className="text-emerald-600 hover:text-emerald-700 transition-colors">Home</Link>
-            <Link href="/courses" className="hover:text-emerald-600 transition-colors">Courses</Link>
-            <Link href="/blog" className="hover:text-emerald-600 transition-colors">Blog</Link>
+            <Link href="/" className="text-primary hover:text-primary/80 transition-colors">Home</Link>
+            <Link href="/courses" className="hover:text-primary transition-colors">Courses</Link>
+            <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
           </nav>
         </div>
 
@@ -40,10 +40,10 @@ export default function MildainTrainingsHome() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" asChild className="font-semibold text-sm hover:text-emerald-600">
+            <Button variant="ghost" asChild className="font-semibold text-sm hover:text-primary">
               <Link href="/login">Login</Link>
             </Button>
-            <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm rounded-full px-5 transition-all shadow-sm shadow-emerald-500/20">
+            <Button asChild className="bg-primary hover:bg-primary/90 text-white font-semibold text-sm rounded-full px-5 transition-all shadow-sm shadow-primary/20">
               <Link href="/register">Sign Up</Link>
             </Button>
           </div>
@@ -57,7 +57,7 @@ export default function MildainTrainingsHome() {
           {/* Left Text and Details Area */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left space-y-6 max-w-xl">
             <div className="inline-flex items-center gap-2 bg-white border border-slate-100 rounded-full px-4 py-1.5 shadow-sm text-xs font-bold text-slate-800">
-              <Sparkles className="h-4 w-4 text-emerald-500 fill-emerald-500" />
+              <Sparkles className="h-4 w-4 text-primary fill-primary" />
               <span>Discover 20,000+ World-Class Courses</span>
             </div>
 
@@ -65,7 +65,7 @@ export default function MildainTrainingsHome() {
               Learn Smarter <br/>
               <span className="relative inline-block">
                 Achieve knowledge
-                <span className="absolute bottom-1 left-0 w-full h-[6px] bg-emerald-400/40 rounded-full -z-10" />
+                <span className="absolute bottom-1 left-0 w-full h-[6px] bg-primary/40 rounded-full -z-10" />
               </span>
             </h1>
 
@@ -74,7 +74,7 @@ export default function MildainTrainingsHome() {
             </p>
 
             <div className="pt-2">
-              <Button size="lg" asChild className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-base px-8 h-14 rounded-xl shadow-lg shadow-emerald-500/20 transform active:scale-95 transition-all">
+              <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-white font-bold text-base px-8 h-14 rounded-xl shadow-lg shadow-primary/20 transform active:scale-95 transition-all">
                 <Link href="/courses">Explore Course</Link>
               </Button>
             </div>
@@ -82,12 +82,12 @@ export default function MildainTrainingsHome() {
 
           {/* Right Image Graphic Design Area */}
           <div className="lg:col-span-6 relative flex justify-center items-center w-full">
-            {/* Emerald Abstract Background Circles from screenshot style */}
-            <div className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border-[28px] border-emerald-400/20 -z-10 animate-pulse duration-4000" />
-            <div className="absolute w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full bg-emerald-500/10 -z-10" />
+            {/* Emerald Abstract Background Circles style */}
+            <div className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border-[28px] border-primary/20 -z-10 animate-pulse duration-4000" />
+            <div className="absolute w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full bg-primary/10 -z-10" />
 
             {/* Custom visual decoration strings */}
-            <svg className="absolute -top-6 -right-6 h-16 w-16 text-emerald-400 opacity-60 hidden sm:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
+            <svg className="absolute -top-6 -right-6 h-16 w-16 text-primary opacity-60 hidden sm:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
               <path d="M10,50 Q40,10 50,50 T90,50" />
             </svg>
 
@@ -106,7 +106,7 @@ export default function MildainTrainingsHome() {
 
             {/* Floating Instructor Rating Badge */}
             <div className="absolute bottom-8 left-0 sm:-left-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/60 flex items-center gap-4 max-w-xs transition-transform hover:-translate-y-1">
-              <div className="text-3xl font-extrabold text-emerald-600 tracking-tight">
+              <div className="text-3xl font-extrabold text-primary tracking-tight">
                 4.6
               </div>
               <div className="flex flex-col">
