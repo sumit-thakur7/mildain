@@ -124,7 +124,7 @@ export default function Navbar() {
             onMouseEnter={() => setIsMegaMenuOpen(true)}
             onMouseLeave={() => setIsMegaMenuOpen(false)}
           >
-            <button className="flex items-center gap-1.5 sm:gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 lg:px-5 h-[38px] lg:h-[42px] rounded-lg font-medium transition-colors whitespace-nowrap shrink-0">
+            <button className="flex items-center gap-1.5 sm:gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 lg:px-5 h-[38px] lg:h-[42px] rounded-sm font-medium transition-colors whitespace-nowrap shrink-0">
               <LayoutGrid size={16} className="w-[16px] h-[16px]" />
               <span className="text-[13px] lg:text-[14px]">All Courses</span>
             </button>
@@ -135,7 +135,7 @@ export default function Navbar() {
             <Input
               type="text"
               placeholder="What do you want to learn?"
-              className="pl-10 pr-4 h-[38px] lg:h-[42px] text-[13px] lg:text-[14px] rounded-lg bg-primary/5 border border-primary/20 focus:bg-primary/10 focus:ring-1 focus:ring-primary/30 transition-all text-foreground placeholder:text-muted-foreground w-full shadow-none"
+              className="pl-10 pr-4 h-[38px] lg:h-[42px] text-[13px] lg:text-[14px] rounded-sm bg-primary/5 border border-primary/20 focus:bg-primary/10 focus:ring-1 focus:ring-primary/30 transition-all text-foreground placeholder:text-muted-foreground w-full shadow-none"
             />
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center h-full">
             <button 
               onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
-              className="flex items-center gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground px-3 sm:px-4 h-[34px] sm:h-[38px] rounded-lg font-medium transition-colors whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground px-3 sm:px-4 h-[36px] sm:h-[40px] rounded-sm font-medium transition-colors whitespace-nowrap shrink-0"
             >
               <LayoutGrid size={14} />
               <span className="text-[12px] sm:text-[13px]">All Courses</span>
@@ -168,11 +168,11 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 h-full">
-            <Link href="/corporate" className="flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground px-4 xl:px-6 h-[38px] xl:h-[42px] rounded-lg font-bold text-[13px] xl:text-[14px] transition-colors whitespace-nowrap shrink-0">
+            <Link href="/corporate" className="flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground px-4 xl:px-6 h-[38px] xl:h-[42px] rounded-sm font-bold text-[13px] xl:text-[14px] transition-colors whitespace-nowrap shrink-0">
               Corporate
             </Link>
 
-            <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[13px] xl:text-[14px] rounded-lg px-5 xl:px-7 h-[38px] xl:h-[42px] transition-all shadow-none shrink-0">
+            <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[13px] xl:text-[14px] rounded-sm px-5 xl:px-7 h-[38px] xl:h-[42px] transition-all shadow-none shrink-0">
               <Link href="/login">Login</Link>
             </Button>
           </div>

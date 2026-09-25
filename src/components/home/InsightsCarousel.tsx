@@ -118,7 +118,7 @@ export default function InsightsCarousel() {
             {articles.map((article) => (
               <div 
                 key={article.id} 
-                className="w-full sm:w-1/2 lg:w-1/3 flex-none relative h-[28rem] md:h-[32rem] overflow-hidden group border-r border-white/10 last:border-r-0"
+                className="w-full sm:w-1/2 lg:w-1/3 flex-none relative h-[24rem] md:h-[28rem] overflow-hidden group border-r border-white/10 last:border-r-0"
               >
                 <Image
                   src={article.image}
@@ -131,19 +131,19 @@ export default function InsightsCarousel() {
                 
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 transition-opacity duration-500 group-hover:opacity-90" />
                 
-                <div className="absolute inset-0 p-8 md:p-12 flex flex-col z-10">
-                  <h3 className="text-white text-xl md:text-2xl font-bold leading-snug mb-6 line-clamp-3">
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col z-10">
+                  <h3 className="text-white text-xl md:text-2xl font-bold leading-snug mb-5 line-clamp-3">
                     {article.title}
                   </h3>
                   
-                  <div className="w-12 h-1 bg-primary mb-6" />
+                  <div className="w-10 h-1 bg-primary mb-5" />
                   
-                  <p className="text-white/90 text-base md:text-lg leading-relaxed line-clamp-4 mb-8">
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed line-clamp-4 mb-6">
                     {article.description}
                   </p>
                   
                   <div className="mt-auto">
-                    <button className="bg-white text-primary hover:bg-slate-100 transition-colors font-bold text-base px-6 py-3 rounded-md flex items-center gap-2 shadow-sm">
+                    <button className="bg-white text-primary hover:bg-slate-100 transition-colors font-bold text-base px-6 py-2.5 rounded-sm flex items-center gap-2 shadow-sm">
                       Read <ArrowRight size={20} strokeWidth={2.5} />
                     </button>
                   </div>

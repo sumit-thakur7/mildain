@@ -22,7 +22,7 @@ export default function SkillupSection() {
               For Business
             </p>
             
-            <h2 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight">
+            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
               Mildain<br />
               Skillup+
             </h2>
@@ -31,7 +31,7 @@ export default function SkillupSection() {
               Get a learning platform built for outcome-driven AI, digital, and power skill-building. Combines expert-led content, live sessions, and hands-on projects in one subscription.
             </p>
             
-            <button className="bg-white text-[#199d5a] hover:bg-slate-100 px-10 py-4 rounded-xl font-bold text-lg transition-colors shadow-md">
+            <button className="bg-white text-[#199d5a] hover:bg-slate-100 px-10 py-4 rounded-sm font-bold text-lg transition-colors shadow-md">
               Get Started
             </button>
           </div>

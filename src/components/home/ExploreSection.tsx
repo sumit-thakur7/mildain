@@ -123,7 +123,7 @@ export default function ExploreSection() {
                     <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
                       {roles[currentIndex].title}
                     </h3>
-                    <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-6 line-clamp-4">
+                    <p className="text-base md:text-lg text-slate-800 leading-relaxed mb-6 line-clamp-4">
                       {roles[currentIndex].description}
                     </p>
                     <p className="text-lg md:text-xl font-extrabold text-slate-800">

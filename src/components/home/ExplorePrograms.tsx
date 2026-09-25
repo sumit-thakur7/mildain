@@ -62,18 +62,18 @@ export default function ExplorePrograms() {
   const renderCourseCard = (course: Course, isMobileCarousel = false) => (
     <div 
       key={course._id} 
-      className={`bg-white rounded-lg shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col overflow-visible transition-all duration-300 hover:shadow-lg ${
+      className={`bg-white rounded-sm  shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col overflow-visible transition-all duration-300 hover:shadow-lg ${
         isMobileCarousel ? 'w-80 shrink-0 snap-start' : 'w-full'
       }`}
     >
-      <div className="relative w-full h-40 sm:h-44 rounded-t-lg bg-slate-100">
+      <div className="relative w-full h-40 sm:h-44 rounded-sm  bg-slate-100">
         <img 
           src={course.bannerImage || "/images/placeholder-banner.jpg"} 
           alt={course.title} 
-          className="w-full h-40 sm:h-44 object-cover rounded-t-lg"
+          className="w-full h-40 sm:h-44 object-cover rounded-sm "
         />
         
-        <div className="absolute -bottom-6 left-6 w-[64px] h-[64px] bg-white rounded-lg shadow-md border border-slate-100 flex items-center justify-center p-2 z-10">
+        <div className="absolute -bottom-6 left-6 w-[64px] h-[64px] bg-white rounded-sm  shadow-md border border-slate-100 flex items-center justify-center p-2 z-10">
           {(course.logoImage || course.image) ? (
             <img 
               src={course.logoImage || course.image} 
@@ -127,7 +127,7 @@ export default function ExplorePrograms() {
             <div key={cat} className="flex flex-col gap-4">
               <button
                 onClick={() => setActiveCategory(cat === activeCategory ? "" : cat)}
-                className={`flex items-center justify-between w-full px-5 py-4 rounded-[6px] font-medium text-[15px] transition-all ${
+                className={`flex items-center justify-between w-full px-5 py-4 rounded-sm  font-medium text-[15px] transition-all ${
                   activeCategory === cat
                     ? "bg-primary text-white shadow-md"
                     : "bg-white text-slate-700 shadow-sm border border-slate-100"
@@ -146,7 +146,7 @@ export default function ExplorePrograms() {
                   {displayedCourses.map(course => renderCourseCard(course, true))}
                   
                   {activeCourses.length === 0 && (
-                    <div className="w-full py-16 text-center text-slate-500 text-lg bg-white rounded-lg border border-slate-100 shadow-sm">
+                    <div className="w-full py-16 text-center text-slate-500 text-lg bg-white rounded-sm  border border-slate-100 shadow-sm">
                       No courses found in this category.
                     </div>
                   )}
@@ -155,7 +155,7 @@ export default function ExplorePrograms() {
                     <div className="flex items-center justify-center pl-2 pr-6 shrink-0 snap-center">
                       <button
                         onClick={handleViewAll}
-                        className="flex flex-col items-center justify-center gap-2 w-32 h-32 rounded-full bg-white border border-slate-200 text-primary hover:bg-primary hover:text-white transition-all font-bold text-base shadow-sm"
+                        className="flex flex-col items-center justify-center gap-2 w-32 h-32 rounded-sm  bg-white border border-slate-200 text-primary hover:bg-primary hover:text-white transition-all font-bold text-base shadow-sm"
                       >
                         View All
                         <ChevronRight size={24} />
@@ -174,7 +174,7 @@ export default function ExplorePrograms() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`text-left px-5 py-3.5 rounded-[4px] font-medium text-[15px] transition-all duration-200 ${
+                className={`text-left px-5 py-3.5 rounded-sm  font-medium text-[15px] transition-all duration-200 ${
                   activeCategory === cat
                     ? "bg-primary text-white shadow-md"
                     : "bg-white text-slate-700 shadow-sm border border-slate-100 hover:text-primary"
@@ -190,7 +190,7 @@ export default function ExplorePrograms() {
               {displayedCourses.map(course => renderCourseCard(course, false))}
 
               {activeCourses.length === 0 && (
-                <div className="col-span-full py-24 flex flex-col justify-center items-center text-slate-500 bg-white rounded-lg border border-slate-100 shadow-sm">
+                <div className="col-span-full py-24 flex flex-col justify-center items-center text-slate-500 bg-white rounded-sm  border border-slate-100 shadow-sm">
                   <p className="font-medium text-lg">No courses found in this category yet.</p>
                 </div>
               )}
@@ -200,7 +200,7 @@ export default function ExplorePrograms() {
               <div className="mt-12 flex justify-center">
                 <button
                   onClick={handleViewAll}
-                  className="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-[4px] font-semibold text-[15px] shadow-sm hover:border-primary hover:text-primary transition-all"
+                  className=" font-semibold text-[20px]  hover:border-primary hover:text-primary transition-all"
                 >
                   View All Courses
                 </button>

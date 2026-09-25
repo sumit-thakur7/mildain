@@ -10,14 +10,18 @@ import AlumniVideoSection from "@/components/home/AlumniVideoSection";
 import InsightsCarousel from "@/components/home/InsightsCarousel";
 import Footer from "@/components/layout/Footer";
 import StickyBottomBar from "@/components/shared/StickyBottomBar";
+import TrustSection from "@/components/shared/TrustSection";
+
 
 export default function Home() {
   return (
+
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <HeroSection />
       <PartnerLogos />
       <ExplorePrograms />
+      <TrustSection />
       <CommitmentSection />
       <ProgramsStandOut />
       <ExploreSection />

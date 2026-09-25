@@ -9,7 +9,7 @@ const testimonials = [
     id: 1,
     name: "Ramesh Pattnaik",
     role: "Program Manager, Microsoft",
-    logo: "/images/home/partner/microsoft.png",
+    logo: "/images/home/partner/google.png ",
     image: "/images/home/hero1.png",
     quote: '"Projects and case studies reinforced my learning while providing valuable real-world insights."',
     text: "The user-friendly interface and well-structured course drew me in. The high-quality content, delivered by industry experts, was practical and engaging. Completing projects and case studies reinforced my learning with valuable real-world insights."
@@ -27,7 +27,7 @@ const testimonials = [
     id: 3,
     name: "David Chen",
     role: "Data Scientist, Google",
-    logo: "/images/home/partner/google.png",
+    logo: "/images/home/partner/microsoft.png",
     image: "/images/home/hero.png",
     quote: '"The hands-on labs and expert mentorship were game-changers for my career trajectory."',
     text: "Learning from top industry professionals gave me the exact skills needed to transition into data science. The curriculum is up-to-date with current market demands and the dedicated career support helped me secure my dream role quickly."
@@ -134,14 +134,14 @@ export default function AlumniVideoSection() {
                   <div className="bg-primary/5 border border-border/60 rounded-2xl p-8 md:p-10 flex flex-col w-full h-full shadow-sm hover:shadow-md transition-shadow">
                     
                     <div className="flex items-start gap-5 md:gap-6">
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shrink-0 border-2 border-background shadow-sm bg-background">
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shrink-0 border-2 border-background shadow-[0_6px_10px_-2px_rgba(0,0,0,0.25)] bg-background">
                         <Image
-                          src={test.image}
-                          alt={test.name}
-                          fill
-                          className="object-cover"
+                            src={test.image}
+                            alt={test.name}
+                            fill
+                            className="object-cover"
                         />
-                      </div>
+                        </div>
                       <div className="flex flex-col pt-1">
                         <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
                           {test.name}
@@ -152,7 +152,7 @@ export default function AlumniVideoSection() {
                         <img 
                           src={test.logo} 
                           alt="Company Logo" 
-                          className="h-5 md:h-6 w-auto mt-3 object-contain object-left" 
+                          className="h-12 md:h-14 w-auto mt-3 object-contain object-left" 
                         />
                       </div>
                     </div>

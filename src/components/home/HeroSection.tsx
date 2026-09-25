@@ -143,7 +143,7 @@ export default function HeroSection() {
                 <Link href="/courses">{slides[current].btn1}</Link>
               </Button>
               <Button asChild variant="outline" className="bg-primary/10 border-transparent lg:bg-transparent lg:border-[1.5px] lg:border-primary text-primary hover:bg-primary/20 lg:hover:bg-primary lg:hover:text-primary-foreground font-bold text-[14px] px-6 h-[44px] sm:h-[48px] rounded-radius transition-all cursor-pointer w-full sm:w-auto lg:w-[200px] xl:w-[220px]">
-                <Link href="/enroll">{slides[current].btn2}</Link>
+                <Link href="/login">{slides[current].btn2}</Link>
               </Button>
             </div>
 
