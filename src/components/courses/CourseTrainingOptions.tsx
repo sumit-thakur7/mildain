@@ -1,0 +1,105 @@
+import React from 'react';
+import { ShieldCheck } from 'lucide-react';
+
+export default function CourseTrainingOptions() {
+  return (
+    <div id="options" className="w-full bg-white py-12 lg:py-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+        
+        <div className="mb-10 text-center lg:text-left">
+          <h2 className="text-[32px] md:text-[40px] font-extrabold text-slate-900 mb-2">
+            Start Your <span className="text-[#10b981]">PMP</span> Journey Today
+          </h2>
+          <p className="text-slate-600 text-[15px] md:text-[16px] font-medium">
+            Select the ideal training as per your requirement and custom corporate options available.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          
+          <div className="bg-[#f0f6ff] rounded-2xl overflow-hidden border border-blue-100 flex flex-col">
+            <div className="relative h-[240px] w-full overflow-hidden">
+              <img 
+                src="/images/home/hero1.png" 
+                alt="Online Live Bootcamp" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-4 right-4 bg-[#10b981] text-white text-[12px] font-bold px-3 py-1 rounded-full tracking-wide">
+                MOST POPULAR
+              </div>
+            </div>
+            
+            <div className="p-8 flex flex-col flex-grow">
+              <h3 className="text-[20px] font-bold text-slate-900 mb-2">Online Live Bootcamp</h3>
+              <p className="text-slate-600 text-[14px] leading-relaxed mb-6">
+                Immersive interactive bootcamps led by elite credentialed ISACA instructors.
+              </p>
+              
+              <div className="bg-white rounded-xl p-5 border border-blue-50 mb-6">
+                <div className="text-[13px] text-slate-400 font-medium mb-1">
+                  WAS <span className="line-through">₹1,499</span> / <span className="line-through">$2,982</span>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[32px] font-extrabold text-slate-900">₹ 1,299</span>
+                    <span className="text-[14px] text-slate-500 font-medium">or</span>
+                    <span className="text-[24px] font-bold text-slate-700">$ 2,469</span>
+                  </div>
+                  <span className="text-[12px] font-bold text-[#10b981] bg-[#10b981]/10 px-2.5 py-1 rounded-sm">
+                    All Inclusive
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-auto">
+                <button className="w-full bg-[#047857] hover:bg-[#065f46] text-white font-bold py-3.5 rounded-lg transition-colors mb-3">
+                  Enroll Instantly
+                </button>
+                <div className="flex items-center justify-center gap-1.5 text-[12px] text-slate-500">
+                  <ShieldCheck size={14} className="text-blue-500" />
+                  <span>Secure checkout via Stripe & PayPal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#f0f6ff] rounded-2xl overflow-hidden border border-blue-100 flex flex-col">
+            <div className="relative h-[240px] w-full overflow-hidden">
+              <img 
+                src="/images/home/hero2.png" 
+                alt="Enterprise B2B Training" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            <div className="p-8 flex flex-col flex-grow">
+              <h3 className="text-[20px] font-bold text-slate-900 mb-2">Enterprise B2B Training</h3>
+              <p className="text-slate-600 text-[14px] leading-relaxed mb-6">
+                Scalable upskilling frameworks structured around enterprise production schedules.
+              </p>
+              
+              <div className="bg-[#dbeafe] rounded-xl p-5 border border-blue-200 mb-6 flex-grow">
+                <h4 className="text-[20px] font-bold text-[#047857] mb-2">
+                  Custom Enterprise Volume Pricing
+                </h4>
+                <p className="text-slate-600 text-[14px] leading-relaxed">
+                  Tiered packages built precisely around workforce headcounts.
+                </p>
+              </div>
+              
+              <div className="mt-auto">
+                <button className="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold py-3.5 rounded-lg transition-colors mb-3">
+                  Request Corporate Proposal
+                </button>
+                <div className="flex items-center justify-center text-[12px] text-slate-500">
+                  <span>Dedicated corporate response within 2 hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,6 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/home/HeroSection";
-import ExplorePrograms from "@/components/home/ExplorePrograms";
 import PartnerLogos from "@/components/home/PartnerLogos";
 import CommitmentSection from "@/components/home/CommitmentSection";
 import ProgramsStandOut from "@/components/home/ProgramsStandOut";
@@ -11,7 +10,9 @@ import InsightsCarousel from "@/components/home/InsightsCarousel";
 import Footer from "@/components/layout/Footer";
 import StickyBottomBar from "@/components/shared/StickyBottomBar";
 import TrustSection from "@/components/shared/TrustSection";
-
+import ExplorePrograms from "@/components/courses/ExplorePrograms";
+import EnterpriseLogos from "@/components/shared/EnterpriseLogos";
+// import DiscountBadge from "@/components/shared/DiscountBadge";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <ProgramsStandOut />
       <ExploreSection />
       <SkillupSection />
+      <EnterpriseLogos />
       <AlumniVideoSection />
       <InsightsCarousel />
       <Footer />

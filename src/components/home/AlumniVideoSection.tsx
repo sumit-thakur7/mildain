@@ -103,7 +103,7 @@ export default function AlumniVideoSection() {
 
           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
 
-          <div className="absolute top-6 left-0 bg-[#83bb9a] text-white px-6 py-2.5 rounded-r-md text-base md:text-lg font-bold tracking-wide shadow-sm z-10">
+          <div className="absolute top-6 left-0 bg-[#83bb9a]  text-white px-6 py-2.5 rounded-r-md text-base md:text-lg font-bold tracking-wide shadow-sm z-10">
             Success story
           </div>
 
@@ -152,7 +152,7 @@ export default function AlumniVideoSection() {
                         <img 
                           src={test.logo} 
                           alt="Company Logo" 
-                          className="h-12 md:h-14 w-auto mt-3 object-contain object-left" 
+                          className="h-12 md:h-14 w-auto mt-3 object-contain !object-left" 
                         />
                       </div>
                     </div>

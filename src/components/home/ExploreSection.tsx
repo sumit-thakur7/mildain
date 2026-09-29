@@ -71,7 +71,7 @@ export default function ExploreSection() {
               <Link
                 key={index}
                 href={`/categories/${cat.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
-                className="px-6 py-3 bg-[#F4F4F4] hover:bg-[#EAEAEA] text-slate-800 text-base md:text-lg rounded-full transition-colors whitespace-nowrap"
+                className="px-6 py-3 bg-[#F4F4F4] hover:text-primary  text-slate-900 text-base md:text-lg rounded-full transition-colors whitespace-nowrap"
               >
                 {cat}
               </Link>

@@ -59,58 +59,65 @@ export default function ExplorePrograms() {
     setVisibleCount(prev => prev + 6);
   };
 
-  const renderCourseCard = (course: Course, isMobileCarousel = false) => (
-    <div 
-      key={course._id} 
-      className={`bg-white rounded-sm  shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col overflow-visible transition-all duration-300 hover:shadow-lg ${
-        isMobileCarousel ? 'w-80 shrink-0 snap-start' : 'w-full'
-      }`}
-    >
-      <div className="relative w-full h-40 sm:h-44 rounded-sm  bg-slate-100">
-        <img 
-          src={course.bannerImage || "/images/placeholder-banner.jpg"} 
-          alt={course.title} 
-          className="w-full h-40 sm:h-44 object-cover rounded-sm "
-        />
-        
-        <div className="absolute -bottom-6 left-6 w-[64px] h-[64px] bg-white rounded-sm  shadow-md border border-slate-100 flex items-center justify-center p-2 z-10">
-          {(course.logoImage || course.image) ? (
-            <img 
-              src={course.logoImage || course.image} 
-              alt="Provider Logo" 
-              className="max-h-full max-w-full object-contain" 
-            />
-          ) : (
-            <span className="text-[10px] font-bold text-slate-800 text-center uppercase">
-              {course.provider || "LOGO"}
-            </span>
-          )}
-        </div>
-      </div>
+  const renderCourseCard = (course: Course, isMobileCarousel = false) => {
+    const categorySlug = (course.category || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
 
-      <div className="pt-10 px-6 pb-6 flex flex-col flex-1 bg-white rounded-b-lg">
-        <h3 className="text-xl sm:text-[22px] font-bold text-slate-900 leading-[1.3] mb-5 line-clamp-2 min-h-[58px]">
-          {course.title}
-        </h3>
-        
-        <div className="mt-auto space-y-1.5 mb-6">
-          <p className="text-[14px] text-slate-500 flex gap-1.5 items-center">
-            Duration: <span className="font-bold text-slate-700">{course.duration || "Self-Paced"}</span>
-          </p>
-          <p className="text-[14px] text-slate-500 flex gap-1.5 items-center">
-            Cohort Starts: <span className="font-bold text-slate-700">{course.cohortStarts || "Coming Soon"}</span>
-          </p>
+    return (
+      <div 
+        key={course._id} 
+        className={`bg-white rounded-sm  shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col overflow-visible transition-all duration-300 hover:shadow-lg ${
+          isMobileCarousel ? 'w-80 shrink-0 snap-start' : 'w-full'
+        }`}
+      >
+        <div className="relative w-full h-40 sm:h-44 rounded-sm  bg-slate-100">
+          <img 
+            src={course.bannerImage} 
+            alt={course.title} 
+            className="w-full h-40 sm:h-44 object-cover rounded-sm "
+          />
+          
+          <div className="absolute -bottom-6 left-6 w-[64px] h-[64px] bg-white rounded-sm  shadow-md border border-slate-100 flex items-center justify-center p-2 z-10">
+            {(course.logoImage || course.image) ? (
+              <img 
+                src={course.logoImage || course.image} 
+                alt="Provider Logo" 
+                className="max-h-full max-w-full object-contain" 
+              />
+            ) : (
+              <span className="text-[10px] font-bold text-slate-800 text-center uppercase">
+                {course.provider || "LOGO"}
+              </span>
+            )}
+          </div>
         </div>
 
-        <Link 
-          href={`/courses/${course.slug}`}
-          className="block w-full py-2.5 bg-white border border-primary text-primary text-center rounded-[4px] font-semibold text-[15px] hover:bg-primary hover:text-white transition-colors"
-        >
-          View Program
-        </Link>
+        <div className="pt-10 px-6 pb-6 flex flex-col flex-1 bg-white rounded-b-lg">
+          <h3 className="text-xl sm:text-[22px] font-bold text-slate-900 leading-[1.3] mb-5 line-clamp-2 min-h-[58px]">
+            {course.title}
+          </h3>
+          
+          <div className="mt-auto space-y-1.5 mb-6">
+            <p className="text-[14px] text-slate-500 flex gap-1.5 items-center">
+              Duration: <span className="font-bold text-slate-700">{course.duration || "Self-Paced"}</span>
+            </p>
+            <p className="text-[14px] text-slate-500 flex gap-1.5 items-center">
+              Cohort Starts: <span className="font-bold text-slate-700">{course.cohortStarts || "Coming Soon"}</span>
+            </p>
+          </div>
+
+          <Link 
+            href={`/courses/${categorySlug}/${course.slug}`}
+            className="block w-full py-2.5 bg-white border border-primary text-primary text-center rounded-[4px] font-semibold text-[15px] hover:bg-primary hover:text-white transition-colors"
+          >
+            View Program
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section className="w-full bg-[#F5FBF8] py-16 lg:py-20 px-4 sm:px-6 lg:px-16 min-h-screen">
@@ -200,7 +207,7 @@ export default function ExplorePrograms() {
               <div className="mt-12 flex justify-center">
                 <button
                   onClick={handleViewAll}
-                  className=" font-semibold text-[20px]  hover:border-primary hover:text-primary transition-all"
+                  className=" font-semibold text-[20px]  hover:border-primary text-primary transition-all hover:underline"
                 >
                   View All Courses
                 </button>

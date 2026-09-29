@@ -8,7 +8,7 @@ export default function CommitmentSection() {
   return (
     <section className="py-12 md:py-20 bg-background overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-16">      
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-8 lg:mb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-6 lg:mb-8">
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-block border-2 border-primary text-primary px-5 py-2 rounded-sm text-base md:text-xl font-bold">
               Get to know Mildain
@@ -29,7 +29,7 @@ export default function CommitmentSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
-          <div className="lg:col-span-5 relative w-full h-68 sm:h-90 lg:h-[30rem]">
+          <div className="lg:col-span-5 relative w-full h-64 sm:h-84 lg:h-[28rem]">
             <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Students learning together"

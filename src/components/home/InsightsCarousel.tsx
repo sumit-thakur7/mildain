@@ -103,7 +103,7 @@ export default function InsightsCarousel() {
   return (
     <section className="w-full flex flex-col bg-background">
       
-      <div className="w-full pb-10 md:pb-14 text-center px-6">
+      <div className="w-full pb-10 md:pb-12 text-center px-6">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
           Upskill for <span className="text-primary">Career Growth</span>
         </h2>
