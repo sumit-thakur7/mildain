@@ -160,11 +160,11 @@ export default function Navbar() {
           </button>
 
           <nav className="hidden lg:flex items-center gap-5 xl:gap-8 text-[13.5px] xl:text-[14.5px] font-bold text-foreground h-full">
-            <Link href="/training" className="hover:text-primary transition-colors flex items-center gap-1">
-              Training <ChevronDown size={14} className="mt-0.5 text-muted-foreground" />
-            </Link>
             <Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link>
             <Link href="/careers" className="hover:text-primary transition-colors">Careers</Link>
+            <Link href="/more" className="hover:text-primary transition-colors flex items-center gap-1">
+              More <ChevronDown size={14} className="mt-0.5 text-muted-foreground" />
+            </Link>
           </nav>
 
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 h-full">
@@ -293,8 +293,8 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-[64px] left-0 w-full bg-background border-b border-border shadow-lg py-4 px-6 flex flex-col gap-4 z-40">
           <div className="flex flex-col gap-4 border-b border-border pb-4">
-            <Link href="/training" className="text-[14px] font-bold text-foreground flex justify-between items-center">
-              Training <ChevronRight size={16} className="text-muted-foreground" />
+            <Link href="/more" className="text-[14px] font-bold text-foreground flex justify-between items-center">
+              More <ChevronRight size={16} className="text-muted-foreground" />
             </Link>
             <Link href="/blogs" className="text-[14px] font-bold text-foreground">Blogs</Link>
             <Link href="/careers" className="text-[14px] font-bold text-foreground">Careers</Link>

@@ -19,19 +19,19 @@ export default function SkillupSection() {
           
           <div className="flex flex-col items-start text-left">
             <p className="text-white text-lg md:text-xl font-semibold mb-4">
-              For Business
+              For Businesses
             </p>
             
-            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
-              Mildain<br />
-              Skillup+
+            <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight">
+              Leadership <br />
+              Skill Up+
             </h2>
             
             <p className="text-white text-lg md:text-xl leading-relaxed mb-10 w-full lg:w-11/12">
-              Get a learning platform built for outcome-driven AI, digital, and power skill-building. Combines expert-led content, live sessions, and hands-on projects in one subscription.
+              Building strong teams with interactive workshops, real-world business scenarios, and sandbox techniques rather than traditional lectures.
             </p>
             
-            <button className="bg-white text-[#199d5a] hover:bg-slate-100 px-10 py-4 rounded-sm font-bold text-lg transition-colors shadow-md">
+            <button className="bg-white text-[#199d5a] hover:bg-slate-100 px-10 py-2 rounded-sm font-bold text-lg transition-colors shadow-md">
               Get Started
             </button>
           </div>

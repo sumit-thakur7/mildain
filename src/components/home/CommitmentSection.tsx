@@ -11,18 +11,18 @@ export default function CommitmentSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-6 lg:mb-8">
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-block border-2 border-primary text-primary px-5 py-2 rounded-sm text-base md:text-xl font-bold">
-              Get to know Mildain
+              Our Core Purpose
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
-              Our commitment<br />
-              to diversity<br />
-              leadership.
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight tracking-tight">
+              Inclusive Environment<br />
+              Supporting Diverse<br />
+              Talent
             </h2>
           </div>
           
           <div className="lg:col-span-7 lg:pt-16">
-            <p className="text-muted-foreground text-xl md:text-xl leading-relaxed w-11/12">
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum
+            <p className="text-muted-foreground text-xl text-slate-800 md:text-xl leading-relaxed w-11/12">
+              The concept of 'diversity breeds innovation' is central to our standards. Our training initiatives lift the obstacles and create equal opportunities for professionals and leaders globally.
             </p>
           </div>
         </div>
@@ -44,25 +44,25 @@ export default function CommitmentSection() {
             <div className="grid grid-cols-2 border-y border-border py-2 lg:py-4">
               <div className="flex flex-col pr-4 lg:pr-6">
                 <span className="text-5xl lg:text-6xl font-bold text-primary leading-none mb-3">
-                  28K
+                  100%
                 </span>
                 <span className="text-foreground font-bold text-xl md:text-xl leading-snug">
-                  Graduate<br />Students
+                  Flexible Lesson <br />Plans
                 </span>
               </div>
               
               <div className="flex flex-col pl-6 lg:pl-10 border-l border-border">
                 <span className="text-5xl lg:text-6xl font-bold text-primary leading-none mb-3">
-                  98%
+                  25K+
                 </span>
                 <span className="text-foreground font-bold text-xl md:text-xl leading-snug">
-                  Happy<br />Students
+                  Trainings <br />Delivered
                 </span>
               </div>
             </div>
 
-            <p className="text-muted-foreground text-xl md:text-xl leading-relaxed mt-4 mb-6">
-              Education has come a long way from its traditional roots and will continue to evolve. Learn but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly.
+            <p className="text-muted-foreground text-xl   text-slate-800 md:text-xl leading-relaxed mt-4 mb-6">
+              Make the most out of our training options, which include online, offline, and fly-me-a-trainer. Enjoy full assistance in the preparation for certification and post-training revisions.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-8">
@@ -85,7 +85,7 @@ export default function CommitmentSection() {
 
             <div>
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 h-14 rounded-sm text-xl font-bold transition-all shadow-sm">
-                <Link href="/get-started">Get Started</Link>
+                <Link href="/get-started">Begin Your Journey</Link>
               </Button>
             </div>
 

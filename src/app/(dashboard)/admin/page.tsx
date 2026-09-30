@@ -20,7 +20,6 @@ export default function AdminDashboardOverview() {
   return (
     <div className="space-y-8">
       
-      {/* Page Header */}
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-2xl font-extrabold text-gray-900">Dashboard Overview</h1>
@@ -31,7 +30,6 @@ export default function AdminDashboardOverview() {
         </button>
       </div>
 
-      {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, idx) => (
           <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all">
@@ -51,7 +49,6 @@ export default function AdminDashboardOverview() {
         ))}
       </div>
 
-      {/* Recent Transactions Table */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center">
           <h2 className="text-lg font-bold text-gray-900">Recent Transactions</h2>

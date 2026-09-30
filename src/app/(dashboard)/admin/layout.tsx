@@ -5,11 +5,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen bg-[#f3f4f6]">
       
-      {/* Sidebar Component */}
       <AdminSidebar />
 
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Header */}
         <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-40 shadow-sm">
           <div className="flex items-center bg-gray-50 border border-gray-200 rounded-full px-4 py-2 w-[400px] focus-within:ring-2 focus-within:ring-blue-100 transition-all">
             <Search size={16} className="text-gray-400" />
@@ -38,7 +36,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </header>
 
-        {/* Dynamic Page Content */}
         <main className="flex-1 p-8 overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             {children}

@@ -14,6 +14,8 @@ export default function AddCoursePage() {
     title: "",
     slug: "",
     category: "",
+    inrPrice: "",
+    usdPrice: "",
     provider: "",
     duration: "",
     cohortStarts: "",
@@ -64,7 +66,11 @@ export default function AddCoursePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          inrPrice: Number(formData.inrPrice),
+          usdPrice: Number(formData.usdPrice)
+        }),
       });
 
       const data = await res.json();
@@ -146,6 +152,30 @@ export default function AddCoursePage() {
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   placeholder="e.g. Web Development"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Price (INR) *</label>
+                <input 
+                  type="number" 
+                  required
+                  value={formData.inrPrice}
+                  onChange={(e) => setFormData({ ...formData, inrPrice: e.target.value })}
+                  placeholder="e.g. 5000"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Price (USD) *</label>
+                <input 
+                  type="number" 
+                  required
+                  value={formData.usdPrice}
+                  onChange={(e) => setFormData({ ...formData, usdPrice: e.target.value })}
+                  placeholder="e.g. 60"
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm"
                 />
               </div>

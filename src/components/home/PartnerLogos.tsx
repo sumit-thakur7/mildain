@@ -19,7 +19,7 @@ export default function PartnerLogos() {
       
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-10">
         <h2 className="text-center text-xl md:text-2xl font-semibold text-foreground tracking-wide">
-          Programs in Collaboration with world's top Universities & MNC's
+          Building Careers With Global Academic and Industry Leaders
         </h2>
       </div>
       

@@ -86,9 +86,9 @@ export default function CourseAdvisor() {
                     <p className="text-[14px] md:text-[15px] text-slate-700 leading-relaxed mb-6 font-medium">
                       {advisors[currentIndex].description}
                     </p>
-                    <p className="text-lg md:text-xl font-extrabold text-slate-800">
+                    {/* <p className="text-lg md:text-xl font-extrabold text-slate-800">
                       {advisors[currentIndex].salary}
-                    </p>
+                    </p> */}
                   </div>
                 </motion.div>
               </AnimatePresence>

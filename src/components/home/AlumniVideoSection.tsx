@@ -11,8 +11,8 @@ const testimonials = [
     role: "Program Manager, Microsoft",
     logo: "/images/home/partner/google.png ",
     image: "/images/home/hero1.png",
-    quote: '"Projects and case studies reinforced my learning while providing valuable real-world insights."',
-    text: "The user-friendly interface and well-structured course drew me in. The high-quality content, delivered by industry experts, was practical and engaging. Completing projects and case studies reinforced my learning with valuable real-world insights."
+    quote: '"Mentors guide so well, and the post-training revision and mock interview preparation are bonuses."',
+    text: "The professionally structured curriculum was amazing, and instructors guided so well with the intricate concepts and provided post-training revisions alongside mock interview preparations."
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ const testimonials = [
     role: "Cybersecurity Analyst Level -2, amazon",
     logo: "/images/home/partner/amazon.png",
     image: "/images/home/hero2.png",
-    quote: '"Capstone projects boosted my skills & confidence. Got promoted with 40% pay rise."',
-    text: "The course was comprehensive, suited for all experience levels, and perfectly paced. The capstone projects aligned with my work, especially one on malware protection and network monitoring, which are crucial to my role. Three months after completing the course."
+    quote: '"Learning with AI-blend modules offered me a personalized path that filled my skill gaps."',
+    text: "The AI-driven learning path has completely transformed the way I work now. It has boosted my efficiency of work and built my true efficiency."
   },
   {
     id: 3,
@@ -89,8 +89,8 @@ export default function AlumniVideoSection() {
     <section className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="w-full max-w-screen-xl mx-auto px-6 lg:px-16">
         
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground mb-8 lg:mb-10 max-w-2xl leading-tight">
-          Hear from <span className="text-primary">Mildain</span> Alumni at Top Companies
+        <h2 className="text-2xl md:text-3xl lg:text-4xl text-center text-foreground mb-8 lg:mb-10  leading-tight">
+          Real Stories of<span className="text-primary"> Mildain Learners</span> at Top Corporations
         </h2>
 
         <div className="relative w-full aspect-video lg:aspect-[2.2/1] rounded-2xl overflow-hidden cursor-pointer group shadow-md bg-muted">

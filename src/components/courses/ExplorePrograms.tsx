@@ -124,8 +124,8 @@ export default function ExplorePrograms() {
       <div className="max-w-[1300px] mx-auto w-full">
         
         <div className="w-full text-center mb-12 lg:mb-16">
-          <h2 className="text-[32px] md:text-[40px] lg:text-[44px] font-bold text-slate-900 tracking-tight">
-            Explore <span className="text-primary">Our Programs</span>
+          <h2 className="text-[32px] md:text-[40px] lg:text-[44px] text-slate-900 tracking-tight">
+            Discover <span className="text-primary"> Our Leading Programs</span>
           </h2>
         </div>
 

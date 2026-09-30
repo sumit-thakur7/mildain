@@ -30,7 +30,7 @@ export default function TrustSection() {
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-6">
         
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-800 text-center mb-6 md:mb-8 tracking-tight">
-          Join <span className="text-primary font-semibold">10 Million Learners</span> Who Trust Learning with Us
+          Upskilled Globally, Exceeding <span className="text-primary font-semibold">25K</span> Members
         </h2>
 
         <div className="flex justify-center items-center gap-3 sm:gap-8 md:gap-24">

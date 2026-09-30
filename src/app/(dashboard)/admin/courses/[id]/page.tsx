@@ -18,6 +18,8 @@ export default function EditCoursePage() {
     title: "",
     slug: "",
     category: "",
+    inrPrice: "",
+    usdPrice: "",
     provider: "",
     duration: "",
     cohortStarts: "",
@@ -37,6 +39,8 @@ export default function EditCoursePage() {
             title: data.title || "",
             slug: data.slug || "",
             category: data.category || "",
+            inrPrice: data.inrPrice || "",
+            usdPrice: data.usdPrice || "",
             provider: data.provider || "",
             duration: data.duration || "",
             cohortStarts: data.cohortStarts || "",
@@ -99,7 +103,11 @@ export default function EditCoursePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          inrPrice: Number(formData.inrPrice),
+          usdPrice: Number(formData.usdPrice)
+        }),
       });
 
       const data = await res.json();
@@ -190,6 +198,28 @@ export default function EditCoursePage() {
                   required
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Price (INR) *</label>
+                <input 
+                  type="number" 
+                  required
+                  value={formData.inrPrice}
+                  onChange={(e) => setFormData({ ...formData, inrPrice: e.target.value })}
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Price (USD) *</label>
+                <input 
+                  type="number" 
+                  required
+                  value={formData.usdPrice}
+                  onChange={(e) => setFormData({ ...formData, usdPrice: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
                 />
               </div>

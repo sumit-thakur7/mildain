@@ -21,7 +21,7 @@ export default function EnterpriseLogos() {
       <div className="max-w-[1200px] mx-auto px-6">
         
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1E293B] text-center mb-10 lg:mb-12 tracking-wide">
-          Supporting 700+ Enterprises Around the Globe
+          Trusted by 100+ TechGiants Globally
         </h2>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">

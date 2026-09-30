@@ -10,6 +10,7 @@ import {
   Tag,
   Settings, 
   LogOut,
+  Currency,
   ShieldCheck
 } from "lucide-react";
 
@@ -23,6 +24,7 @@ export default function AdminSidebar() {
     { name: "Transactions", href: "/admin/transactions", icon: CreditCard },
     { name: "Coupons & Offers", href: "/admin/coupons", icon: Tag },
     { name: "Settings", href: "/admin/settings", icon: Settings },
+    { name: "Currency", href: "/admin/currency", icon: Currency  },
   ];
 
   return (
