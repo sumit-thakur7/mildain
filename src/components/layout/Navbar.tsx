@@ -3,9 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, ChevronRight, Menu, X, LayoutGrid, ChevronDown } from 'lucide-react';
+import { Search, ChevronRight, Menu, X, LayoutGrid, ChevronDown, UserCircle, LayoutDashboard, LogOut, ShieldCheck } from 'lucide-react';
 
 interface Course {
   _id: string;
@@ -30,8 +31,13 @@ export default function Navbar() {
   
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const [user, setUser] = useState<{ name: string; role: string } | null>(null);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   
   const headerRef = useRef<HTMLHeadingElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +68,17 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    const handleClickOutsideProfile = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutsideProfile);
+    return () => document.removeEventListener('mousedown', handleClickOutsideProfile);
+  }, []);
+
+  useEffect(() => {
     async function fetchCourses() {
       try {
         const res = await fetch("/api/admin/courses");
@@ -80,6 +97,28 @@ export default function Navbar() {
     }
     fetchCourses();
   }, []);
+
+useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/auth/profile");
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+        }
+      } catch (error) {}
+    };
+    fetchUser();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      setUser(null);
+      setIsMobileMenuOpen(false);
+      router.push("/login");
+    } catch (error) {}
+  };
 
   const activeCourses = courses.filter(c => c.category === activeCategory);
 
@@ -172,9 +211,50 @@ export default function Navbar() {
               Corporate
             </Link>
 
-            <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[13px] xl:text-[14px] rounded-sm px-5 xl:px-7 h-[38px] xl:h-[42px] transition-all shadow-none shrink-0">
-              <Link href="/login">Login</Link>
-            </Button>
+            {!user ? (
+              <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[13px] xl:text-[14px] rounded-sm px-5 xl:px-7 h-[38px] xl:h-[42px] transition-all shadow-none shrink-0">
+                <Link href="/login">Login</Link>
+              </Button>
+            ) : (
+              <div className="relative flex items-center h-full ml-1" ref={profileRef}>
+                <button
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className="flex items-center gap-2 focus:outline-none transition-transform hover:scale-105"
+                >
+                  {user.role === "admin" ? (
+                    <ShieldCheck className="w-8 h-8 xl:w-9 xl:h-9 text-primary" strokeWidth={1.5} />
+                  ) : (
+                    <UserCircle className="w-8 h-8 xl:w-9 xl:h-9 text-primary" strokeWidth={1.5} />
+                  )}
+                </button>
+
+                {isProfileOpen && (
+                  <div className="absolute top-[60px] right-0 w-56 bg-background border border-border rounded-md shadow-lg py-2 z-50">
+                    <div className="px-4 py-3 border-b border-border">
+                      <p className="text-[14px] font-bold text-foreground truncate">{user.name}</p>
+                      <p className="text-[11px] font-bold text-primary uppercase tracking-wider mt-0.5">{user.role}</p>
+                    </div>
+
+                    <Link
+                      href={user.role === "admin" ? "/admin/courses" : "/student"}
+                      onClick={() => setIsProfileOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-[14px] text-foreground hover:bg-secondary hover:text-primary transition-colors mt-1"
+                    >
+                      <LayoutDashboard size={18} />
+                      Dashboard
+                    </Link>
+
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-[14px] text-red-600 hover:bg-red-50 transition-colors text-left"
+                    >
+                      <LogOut size={18} />
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -304,9 +384,41 @@ export default function Navbar() {
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-[14px] rounded-lg w-full h-[42px]">
               <Link href="/corporate">Corporate</Link>
             </Button>
-            <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[14px] rounded-lg w-full h-[42px]">
-              <Link href="/login">Login</Link>
-            </Button>
+
+            {!user ? (
+              <Button asChild className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary font-bold text-[14px] rounded-lg w-full h-[42px]">
+                <Link href="/login">Login</Link>
+              </Button>
+            ) : (
+              <div className="flex flex-col gap-2 border border-border rounded-lg p-3 bg-secondary/20">
+                <div className="flex items-center gap-3 pb-3 border-b border-border">
+                  {user.role === "admin" ? (
+                    <ShieldCheck className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  ) : (
+                    <UserCircle className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  )}
+                  <div>
+                    <p className="text-[14px] font-bold text-foreground truncate">{user.name}</p>
+                    <p className="text-[11px] font-bold text-primary uppercase tracking-wider">{user.role}</p>
+                  </div>
+                </div>
+                <Link
+                  href={user.role === "admin" ? "/admin/courses" : "/student"}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-2 py-2 text-[14px] text-foreground hover:text-primary transition-colors"
+                >
+                  <LayoutDashboard size={18} />
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-2 py-2 text-[14px] text-red-600 transition-colors text-left"
+                >
+                  <LogOut size={18} />
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

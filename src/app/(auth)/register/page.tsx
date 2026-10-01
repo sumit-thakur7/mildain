@@ -3,32 +3,82 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Eye, EyeOff, Info } from "lucide-react";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [phone, setPhone] = useState<string | undefined>("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const formatName = (value: string) => {
+    const lettersOnly = value.replace(/[^a-zA-Z]/g, "");
+    if (lettersOnly.length === 0) return "";
+    return lettersOnly.charAt(0).toUpperCase() + lettersOnly.slice(1).toLowerCase();
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>, field: "firstName" | "lastName") => {
+    setFormData({ ...formData, [field]: formatName(e.target.value) });
+    setError("");
+  };
+
+  const handlePhoneChange = (value: string | undefined) => {
+    setPhone(value);
+    setError("");
+  };
+
+  const validatePassword = (password: string) => {
+    if (password.length < 8) return "Password must be at least 8 characters long";
+    if (password.length > 128) return "Password cannot be longer than 128 characters";
+    if (!/[a-z]/.test(password)) return "It should contain at least one lowercase letter";
+    if (!/[A-Z]/.test(password)) return "It should contain at least one uppercase letter";
+    if (!/\d/.test(password)) return "It should contain at least one number";
+    return "";
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setError("Please enter a valid contact number");
+      setLoading(false);
+      return;
+    }
+
+    const passwordError = validatePassword(formData.password);
+    if (passwordError) {
+      setError(passwordError);
+      setLoading(false);
+      return;
+    }
+
     try {
+      const payload = { ...formData, contactNumber: phone };
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong");
+        throw new Error(data.error || "Registration failed");
       }
 
       router.push("/login");
+      
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -37,51 +87,158 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Create an Account</h2>
-        
-        {error && <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm mb-4">{error}</div>}
+    <div className="min-h-screen flex flex-col lg:flex-row bg-white">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 overflow-y-auto">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-[28px] font-bold text-gray-900">Create your account</h1>
+          </div>
+          
+          {error && <div className="bg-red-50 border border-red-200 text-red-600 p-3 rounded-md text-sm mb-5 font-medium">{error}</div>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-            <input 
-              type="text" 
-              required 
-              className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
-            />
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-[13px] text-gray-600 mb-1.5">First name<span className="text-red-500">*</span></label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="First name"
+                  value={formData.firstName}
+                  className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
+                  onChange={(e) => handleNameChange(e, "firstName")}
+                />
+              </div>
+              <div>
+                <label className="block text-[13px] text-gray-600 mb-1.5">Last name<span className="text-red-500">*</span></label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="Last name"
+                  value={formData.lastName}
+                  className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
+                  onChange={(e) => handleNameChange(e, "lastName")}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[13px] text-gray-600 mb-1.5">Email<span className="text-red-500">*</span></label>
+              <input 
+                type="email" 
+                required 
+                placeholder="Email address"
+                value={formData.email}
+                className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
+                onChange={(e) => {
+                  setFormData({...formData, email: e.target.value});
+                  setError("");
+                }}
+              />
+            </div>
+
+            <div>
+              <label className="block text-[13px] text-gray-600 mb-1.5">Country & Contact number<span className="text-red-500">*</span></label>
+              <div className="w-full border border-gray-300 rounded p-2.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all bg-white flex items-center">
+                <PhoneInput
+                  international
+                  defaultCountry="IN"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  className="w-full text-[14px] outline-none bg-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[13px] text-gray-600 mb-1.5">Password<span className="text-red-500">*</span></label>
+              <div className="relative">
+                <input 
+                  type={showPassword ? "text" : "password"}
+                  required 
+                  placeholder="Password"
+                  value={formData.password}
+                  className="w-full p-2.5 pr-20 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
+                  onChange={(e) => {
+                    setFormData({...formData, password: e.target.value});
+                    setError("");
+                  }}
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                  <div 
+                    className="relative flex items-center"
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                  >
+                    <Info size={16} className="text-gray-400 hover:text-gray-600 cursor-help" />
+                    
+                    {showTooltip && (
+                      <div className="absolute right-0 top-full mt-2 w-72 bg-[#2d2d2d] text-white p-4 rounded shadow-xl z-50 text-[13px]">
+                        <h4 className="font-bold mb-2 text-[14px]">Password Criteria:</h4>
+                        <ul className="list-disc pl-5 space-y-1.5 text-gray-200">
+                          <li>Password must be at least 8 characters long</li>
+                          <li>Password cannot be longer than 128 characters</li>
+                          <li>It should contain at least one lowercase letter</li>
+                          <li>It should contain at least one uppercase letter</li>
+                          <li>It should contain at least one number</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full bg-primary text-white py-3 rounded font-medium hover:opacity-90 transition disabled:opacity-70 mt-2 text-[15px]"
+            >
+              {loading ? "Creating Account..." : "Create Account"}
+            </button>
+          </form>
+          
+          <div className="mt-8 text-center border-t border-gray-200 pt-6">
+            <Link href="/login" className="text-[14px] text-primary hover:underline font-medium">
+                options
+            </Link>
+            <p className="text-[13px] text-gray-500 mt-6">
+              © 2009-2026 - Mildain Trainings. All Rights Reserved. | <Link href="/privacy" className="hover:underline text-primary">Privacy Policy</Link>
+            </p>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input 
-              type="email" 
-              required 
-              className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input 
-              type="password" 
-              required 
-              className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"
-              onChange={(e) => setFormData({...formData, password: e.target.value})}
-            />
-          </div>
-          <button 
-            type="submit" 
-            disabled={loading}
-            className="w-full bg-[#0052cc] text-white p-3 rounded-lg font-bold hover:bg-blue-700 transition"
-          >
-            {loading ? "Signing up..." : "Sign Up"}
-          </button>
-        </form>
-        <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account? <Link href="/login" className="text-blue-600 hover:underline">Log in</Link>
-        </p>
+        </div>
+      </div>
+
+      <div className="hidden lg:flex w-1/2 bg-slate-900 relative items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-[url('/bg-banner.jpg')] bg-cover bg-center bg-no-repeat opacity-50"></div>
+        
+        <div className="relative z-20 w-full max-w-lg p-12 text-white">
+          <h2 className="text-[36px] font-bold leading-tight mb-2">Get Certified. Get Ahead.</h2>
+          <p className="text-[18px] mb-8 text-gray-200">Get started with your immersive learning experience</p>
+          
+          <ul className="space-y-4 text-[16px] font-medium text-gray-100">
+            <li className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
+              15M+ careers advanced
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
+              2000 Live classes every month
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
+              85% report promotion or a new job
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
