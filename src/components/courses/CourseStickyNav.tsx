@@ -5,10 +5,10 @@ import { ChevronDown, ChevronUp, MessageSquare, X } from 'lucide-react';
 
 const navItems = [
   { id: 'overview', label: 'Overview' },
-  { id: 'options', label: 'Training Options' },
   { id: 'curriculum', label: 'Course Curriculum' },
-  { id: 'advisor', label: 'Course Advisor' },
+  { id: 'options', label: 'Training Options' },
   { id: 'exam', label: 'Exam & Certification' },
+  { id: 'advisor', label: 'Course Advisor' },
   { id: 'reviews', label: 'Reviews' },
   { id: 'faqs', label: 'FAQs' },
 ];

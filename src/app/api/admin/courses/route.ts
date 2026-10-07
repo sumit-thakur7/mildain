@@ -38,9 +38,9 @@ export async function GET() {
     const courses = await Course.find({}).sort({ createdAt: -1 });
     return NextResponse.json(courses, { status: 200 });
   } catch (error) {
-  console.error("DB Connection Error: ", error);
-  return NextResponse.json({ error: "Failed to fetch courses" }, { status: 500 });
-}
+    console.error("DB Connection Error: ", error);
+    return NextResponse.json({ error: "Failed to fetch courses" }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {

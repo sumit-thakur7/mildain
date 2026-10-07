@@ -81,9 +81,90 @@
 // }
 
 
+// import React from 'react';
+// import { notFound } from 'next/navigation';
+// import { cookies } from 'next/headers';
+// import { connectToDatabase } from "@/lib/db";
+// import Course from "@/models/Course";
+// import PMPHeroSection from "@/components/courses/PMPHeroSection";
+// import Navbar from "@/components/layout/Navbar"; 
+// import Footer from "@/components/layout/Footer";
+// import CourseStickyNav from '@/components/courses/CourseStickyNav';
+// import CourseOverview from '@/components/courses/CourseOverview';
+// import CourseCurriculum from '@/components/courses/CourseCurriculum';
+// import CourseTrainingOptions from '@/components/courses/CourseTrainingOptions';
+// import CourseExamDetails from '@/components/courses/CourseExamDetails';
+// import CoursePathSalaries from '@/components/courses/CoursePathSalaries';
+// import CourseFAQ from '@/components/courses/CourseFAQ';
+// import InsightsCarousel from '@/components/home/InsightsCarousel';
+// import CourseBenefits from '@/components/courses/CourseBenefits';
+// import CourseAdvisor from '@/components/courses/CourseAdvisor';
+// import CourseReviews from '@/components/courses/CourseReviews';
+// import CourseTools from '@/components/courses/CourseTools';
+// import RelatedPrograms from '@/components/courses/RelatedPrograms';
+// import CourseCareerSupport from '@/components/courses/CourseCareerSupport';
+// import { ScrollButton } from '@/components/layout/ScrollButton';
+
+// export default async function CourseDetailPage({ 
+//   params 
+// }: { 
+//   params: Promise<{ category: string, slug: string }> 
+// }) {
+//   const { category, slug } = await params;
+
+//   const cookieStore = await cookies();
+//   const regionCookie = cookieStore.get('userRegion');
+//   const userRegion = regionCookie?.value === 'IN' ? 'IN' : 'US';
+
+//   await connectToDatabase();
+  
+//   const course = await Course.findOne({ slug: slug });
+
+//   if (!course) {
+//     return notFound();
+//   }
+
+//   const isIndia = userRegion === 'IN';
+//   const amount = isIndia ? (course.inrPrice || 0) : (course.usdPrice || 0);
+//   const symbol = isIndia ? '₹' : '$';
+
+//   const priceDetails = {
+//     symbol,
+//     amount,
+//     formatted: `${symbol}${amount}`
+//   };
+
+//   return (
+//     <div className="w-full bg-white min-h-screen flex flex-col">
+//       <Navbar />
+      
+//       <div className="flex-grow bg-gradient-to-r from-[#ebf7f3] to-white pt-[64px] lg:pt-[76px]">
+//         <PMPHeroSection />
+//         <CourseStickyNav />
+//         <CourseOverview />
+//         <CourseCurriculum />
+//         <CourseTrainingOptions priceDetails={priceDetails} />
+//         <CourseExamDetails />
+//         <CourseBenefits />
+//         <CourseAdvisor />
+//         <CourseReviews />
+//         <CourseTools />
+//         <CoursePathSalaries />
+//         <RelatedPrograms />
+//         <CourseCareerSupport />
+//         <CourseFAQ />
+//         <InsightsCarousel />
+//         <ScrollButton />
+//       </div>
+//       <Footer />
+//     </div>
+//   );
+// }
+
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { Metadata } from 'next';
 import { connectToDatabase } from "@/lib/db";
 import Course from "@/models/Course";
 import PMPHeroSection from "@/components/courses/PMPHeroSection";
@@ -104,6 +185,30 @@ import CourseTools from '@/components/courses/CourseTools';
 import RelatedPrograms from '@/components/courses/RelatedPrograms';
 import CourseCareerSupport from '@/components/courses/CourseCareerSupport';
 import { ScrollButton } from '@/components/layout/ScrollButton';
+
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ category: string, slug: string }> 
+}): Promise<Metadata> {
+  const { category, slug } = await params;
+  await connectToDatabase();
+  const course = await Course.findOne({ slug: slug });
+
+  if (!course) {
+    return {
+      title: 'Not Found',
+    };
+  }
+
+  return {
+    title: course.metaTitle || course.title,
+    description: course.metaDescription || '',
+    alternates: {
+      canonical: `/courses/${category}/${slug}`
+    }
+  };
+}
 
 export default async function CourseDetailPage({ 
   params 
@@ -134,25 +239,27 @@ export default async function CourseDetailPage({
     formatted: `${symbol}${amount}`
   };
 
+  const plainCourse = JSON.parse(JSON.stringify(course));
+
   return (
     <div className="w-full bg-white min-h-screen flex flex-col">
       <Navbar />
       
       <div className="flex-grow bg-gradient-to-r from-[#ebf7f3] to-white pt-[64px] lg:pt-[76px]">
-        <PMPHeroSection />
+        <PMPHeroSection course={plainCourse} formattedCategory={plainCourse.category} />
         <CourseStickyNav />
-        <CourseOverview />
-        <CourseCurriculum />
-        <CourseTrainingOptions priceDetails={priceDetails} />
-        <CourseExamDetails />
-        <CourseBenefits />
-        <CourseAdvisor />
+        <CourseOverview course={plainCourse} /> 
+        <CourseCurriculum course={plainCourse} />
+        <CourseTrainingOptions course={plainCourse} priceDetails={priceDetails} />
+        <CourseExamDetails course={plainCourse} />
+        <CourseBenefits course={plainCourse} isIndia={isIndia} />
+        <CourseAdvisor course={plainCourse} />
         <CourseReviews />
-        <CourseTools />
+        <CourseTools course={plainCourse} />
         <CoursePathSalaries />
-        <RelatedPrograms />
         <CourseCareerSupport />
-        <CourseFAQ />
+        <RelatedPrograms category={plainCourse.category} currentSlug={plainCourse.slug} isIndia={isIndia} />
+        <CourseFAQ course={plainCourse} />
         <InsightsCarousel />
         <ScrollButton />
       </div>

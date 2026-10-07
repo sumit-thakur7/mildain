@@ -3,13 +3,23 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, AlertCircle, Upload, X } from "lucide-react";
+import { ArrowLeft, Save, AlertCircle, FileText, Layout, List, BookOpen, HelpCircle, DollarSign, Award, Wrench, Users } from "lucide-react";
+import BasicInfoTab from "./components/BasicInfoTab";
+import HeroSectionTab from "./components/HeroSectionTab";
+import OverviewTab from "./components/OverviewTab";
+import CurriculumTab from "./components/CurriculumTab";
+import TrainingOptionsTab from "./components/TrainingOptionsTab";
+import ExamDetailsTab from "./components/ExamDetailsTab";
+import BenefitsTab from "./components/BenefitsTab";
+import ToolsTab from "./components/ToolsTab";
+import FaqTab from "./components/FaqTab";
+import AdvisorTab from "./components/AdvisorTab";
 
 export default function EditCoursePage() {
   const router = useRouter();
   const params = useParams();
   const courseId = params.id as string;
-  
+  const [activeTab, setActiveTab] = useState("basic");
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState("");
@@ -26,6 +36,68 @@ export default function EditCoursePage() {
     badge: "",
     bannerImage: "",
     logoImage: "",
+    heroTitle: "",
+    heroSubtitle: "",
+    cpeCredits: "",
+    learnerCount: "",
+    trustpilotRating: "",
+    heroBannerImage: "",
+    heroBannerAlt: "",
+    heroBannerTitle: "",
+    heroProviderLogo: "",
+    heroProviderLogoAlt: "",
+    heroProviderLogoTitle: "",
+    heroProviderLogoUrl: "",
+    metaTitle: "",
+    metaDescription: "",
+    quoteText: "",
+    quoteLinkText: "",
+    quoteLinkUrl: "",
+    heroSubtitleLines: [] as string[],
+    heroButtons: [] as any[],
+    overviewHeading: "",
+    overviewDescription: "",
+    overviewKeyPoints: [] as string[],
+    overviewSkillsCovered: [] as string[],
+    overviewImage: "",
+    overviewImageAlt: "",
+    overviewImageTitle: "",
+    curriculumTitle: "",
+    curriculumDescription: "",
+    curriculumPdf: "",
+    curriculumModules: [] as any[],
+    trainingOptionsHeading: "",
+    trainingOptionsSubHeading: "",
+    trainingCard1Image: "",
+    trainingCard1ImageAlt: "",
+    trainingCard1ImageTitle: "",
+    trainingCard1Title: "",
+    trainingCard1Description: "",
+    examHeading: "",
+    examSubHeading: "",
+    examFormat: "",
+    examDuration: "",
+    examQuestions: "",
+    examQuestionTypes: "",
+    examLanguages: "",
+    examCertificateImage: "",
+    examCertificateImageAlt: "",
+    examCertificateImageTitle: "",
+    examPassingScore: "",
+    examTotalScore: "",
+    examScoreDescription: "",
+    examGuaranteeTitle: "",
+    examGuaranteeSubtitle: "",
+    examGuaranteeFooter: "",
+    benefitsHeading: "",
+    benefitsDescription: "",
+    benefitsTabs: [] as any[],
+    toolsHeading: "",
+    toolsList: [] as any[],
+    advisorHeading: "",
+    advisors: [] as any[],
+    faqHeading: "",
+    faqs: [] as any[],
   });
 
   useEffect(() => {
@@ -47,6 +119,68 @@ export default function EditCoursePage() {
             badge: data.badge || "",
             bannerImage: data.bannerImage || "",
             logoImage: data.logoImage || data.image || "",
+            heroTitle: data.heroTitle || "",
+            heroSubtitle: data.heroSubtitle || "",
+            cpeCredits: data.cpeCredits || "",
+            learnerCount: data.learnerCount || "",
+            trustpilotRating: data.trustpilotRating || "",
+            heroBannerImage: data.heroBannerImage || "",
+            heroBannerAlt: data.heroBannerAlt || "",
+            heroBannerTitle: data.heroBannerTitle || "",
+            heroProviderLogo: data.heroProviderLogo || "",
+            heroProviderLogoAlt: data.heroProviderLogoAlt || "",
+            heroProviderLogoTitle: data.heroProviderLogoTitle || "",
+            heroProviderLogoUrl: data.heroProviderLogoUrl || "",
+            metaTitle: data.metaTitle || "",
+            metaDescription: data.metaDescription || "",
+            quoteText: data.quoteText || "",
+            quoteLinkText: data.quoteLinkText || "",
+            quoteLinkUrl: data.quoteLinkUrl || "",
+            heroSubtitleLines: data.heroSubtitleLines || [],
+            heroButtons: data.heroButtons || [],
+            overviewHeading: data.overviewHeading || "",
+            overviewDescription: data.overviewDescription || "",
+            overviewKeyPoints: data.overviewKeyPoints || [],
+            overviewSkillsCovered: data.overviewSkillsCovered || [],
+            overviewImage: data.overviewImage || "",
+            overviewImageAlt: data.overviewImageAlt || "",
+            overviewImageTitle: data.overviewImageTitle || "",
+            curriculumTitle: data.curriculumTitle || "",
+            curriculumDescription: data.curriculumDescription || "",
+            curriculumPdf: data.curriculumPdf || "",
+            curriculumModules: data.curriculumModules || [],
+            trainingOptionsHeading: data.trainingOptionsHeading || "",
+            trainingOptionsSubHeading: data.trainingOptionsSubHeading || "",
+            trainingCard1Image: data.trainingCard1Image || "",
+            trainingCard1ImageAlt: data.trainingCard1ImageAlt || "",
+            trainingCard1ImageTitle: data.trainingCard1ImageTitle || "",
+            trainingCard1Title: data.trainingCard1Title || "",
+            trainingCard1Description: data.trainingCard1Description || "",
+            examHeading: data.examHeading || "",
+            examSubHeading: data.examSubHeading || "",
+            examFormat: data.examFormat || "",
+            examDuration: data.examDuration || "",
+            examQuestions: data.examQuestions || "",
+            examQuestionTypes: data.examQuestionTypes || "",
+            examLanguages: data.examLanguages || "",
+            examCertificateImage: data.examCertificateImage || "",
+            examCertificateImageAlt: data.examCertificateImageAlt || "",
+            examCertificateImageTitle: data.examCertificateImageTitle || "",
+            examPassingScore: data.examPassingScore || "",
+            examTotalScore: data.examTotalScore || "",
+            examScoreDescription: data.examScoreDescription || "",
+            examGuaranteeTitle: data.examGuaranteeTitle || "",
+            examGuaranteeSubtitle: data.examGuaranteeSubtitle || "",
+            examGuaranteeFooter: data.examGuaranteeFooter || "",
+            benefitsHeading: data.benefitsHeading || "",
+            benefitsDescription: data.benefitsDescription || "",
+            benefitsTabs: data.benefitsTabs || [],
+            toolsHeading: data.toolsHeading || "",
+            toolsList: data.toolsList || [],
+            advisorHeading: data.advisorHeading || "",
+            advisors: data.advisors || [],
+            faqHeading: data.faqHeading || "",
+            faqs: data.faqs || [],
           });
         }
       } catch (err) {
@@ -61,37 +195,6 @@ export default function EditCoursePage() {
     }
   }, [courseId]);
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const title = e.target.value;
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
-    
-    setFormData({ ...formData, title, slug });
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, field: 'bannerImage' | 'logoImage') => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        setError("Image size must be less than 2MB");
-        return;
-      }
-      
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, [field]: reader.result as string });
-        setError("");
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const removeImage = (field: 'bannerImage' | 'logoImage') => {
-    setFormData({ ...formData, [field]: "" });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -104,9 +207,71 @@ export default function EditCoursePage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
+          ...formData, 
           inrPrice: Number(formData.inrPrice),
-          usdPrice: Number(formData.usdPrice)
+          usdPrice: Number(formData.usdPrice),
+          cpeCredits: formData.cpeCredits ? Number(formData.cpeCredits) : undefined,
+          learnerCount: formData.learnerCount ? Number(formData.learnerCount) : undefined,
+          trustpilotRating: formData.trustpilotRating ? Number(formData.trustpilotRating) : undefined,
+          metaTitle: formData.metaTitle,
+          metaDescription: formData.metaDescription,
+          heroTitle: formData.heroTitle,
+          heroSubtitle: formData.heroSubtitle,
+          heroSubtitleLines: formData.heroSubtitleLines,
+          heroButtons: formData.heroButtons,
+          quoteText: formData.quoteText,
+          quoteLinkText: formData.quoteLinkText,
+          quoteLinkUrl: formData.quoteLinkUrl,
+          heroBannerImage: formData.heroBannerImage,
+          heroBannerAlt: formData.heroBannerAlt,
+          heroBannerTitle: formData.heroBannerTitle,
+          heroProviderLogo: formData.heroProviderLogo,
+          heroProviderLogoAlt: formData.heroProviderLogoAlt,
+          heroProviderLogoTitle: formData.heroProviderLogoTitle,
+          heroProviderLogoUrl: formData.heroProviderLogoUrl,
+          overviewHeading: formData.overviewHeading,
+          overviewDescription: formData.overviewDescription,
+          overviewKeyPoints: formData.overviewKeyPoints,
+          overviewSkillsCovered: formData.overviewSkillsCovered,
+          overviewImage: formData.overviewImage,
+          overviewImageAlt: formData.overviewImageAlt,
+          overviewImageTitle: formData.overviewImageTitle,
+          curriculumTitle: formData.curriculumTitle,
+          curriculumDescription: formData.curriculumDescription,
+          curriculumPdf: formData.curriculumPdf,
+          curriculumModules: formData.curriculumModules,
+          trainingOptionsHeading: formData.trainingOptionsHeading,
+          trainingOptionsSubHeading: formData.trainingOptionsSubHeading,
+          trainingCard1Image: formData.trainingCard1Image,
+          trainingCard1ImageAlt: formData.trainingCard1ImageAlt,
+          trainingCard1ImageTitle: formData.trainingCard1ImageTitle,
+          trainingCard1Title: formData.trainingCard1Title,
+          trainingCard1Description: formData.trainingCard1Description,
+          examHeading: formData.examHeading,
+          examSubHeading: formData.examSubHeading,
+          examFormat: formData.examFormat,
+          examDuration: formData.examDuration,
+          examQuestions: formData.examQuestions,
+          examQuestionTypes: formData.examQuestionTypes,
+          examLanguages: formData.examLanguages,
+          examCertificateImage: formData.examCertificateImage,
+          examCertificateImageAlt: formData.examCertificateImageAlt,
+          examCertificateImageTitle: formData.examCertificateImageTitle,
+          examPassingScore: formData.examPassingScore,
+          examTotalScore: formData.examTotalScore,
+          examScoreDescription: formData.examScoreDescription,
+          examGuaranteeTitle: formData.examGuaranteeTitle,
+          examGuaranteeSubtitle: formData.examGuaranteeSubtitle,
+          examGuaranteeFooter: formData.examGuaranteeFooter,
+          benefitsHeading: formData.benefitsHeading,
+          benefitsDescription: formData.benefitsDescription,
+          benefitsTabs: formData.benefitsTabs,
+          toolsHeading: formData.toolsHeading,
+          toolsList: formData.toolsList,
+          advisorHeading: formData.advisorHeading,
+          advisors: formData.advisors,
+          faqHeading: formData.faqHeading,
+          faqs: formData.faqs,
         }),
       });
 
@@ -126,219 +291,85 @@ export default function EditCoursePage() {
   };
 
   if (fetching) {
-    return <div className="flex justify-center py-20 text-slate-500 font-medium">Loading course data...</div>;
+    return <div className="flex justify-center py-20 text-gray-500 font-medium">Loading course data...</div>;
   }
 
+  const tabs = [
+    { id: "basic", label: "Basic Info", icon: FileText },
+    { id: "hero", label: "Hero Section", icon: Layout },
+    { id: "overview", label: "Overview", icon: List },
+    { id: "curriculum", label: "Curriculum", icon: BookOpen },
+    { id: "options", label: "Training Options", icon: DollarSign },
+    { id: "exam", label: "Exam Details", icon: Award },
+    { id: "benefits", label: "Benefits & Roles", icon: FileText },
+    { id: "tools", label: "Tools Covered", icon: Wrench },
+    { id: "advisors", label: "Course Advisors", icon: Users },
+    { id: "faqs", label: "FAQs & Reviews", icon: HelpCircle },
+  ];
+
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      
-      <div className="flex items-center justify-between">
+    <div className="w-full max-w-full space-y-6">
+      <div className="flex items-center justify-between bg-white p-4 border border-gray-200 rounded-sm shadow-sm">
         <div className="flex items-center gap-4">
           <Link 
             href="/admin/courses"
-            className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors"
+            className="p-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-sm transition-colors border border-transparent hover:border-gray-200"
           >
             <ArrowLeft size={18} />
           </Link>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">Edit Course</h1>
+            <h1 className="text-xl font-bold text-gray-900">Edit Course</h1>
+            <p className="text-gray-500 text-[13px] font-medium">{formData.title}</p>
           </div>
         </div>
         
         <button 
           onClick={handleSubmit}
           disabled={loading}
-          className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-md font-semibold text-sm transition-all shadow-sm flex items-center gap-2 disabled:opacity-70"
+          className="bg-gray-900 hover:bg-black text-white px-6 py-2 rounded-sm font-bold transition-all shadow-sm flex items-center gap-2 text-[13px] disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {loading ? "Updating..." : <><Save size={16} /> Update Course</>}
+          {loading ? "Saving..." : <><Save size={16} /> Save Changes</>}
         </button>
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-100 text-red-600 p-3 rounded-md flex items-center gap-2 text-sm font-medium">
+        <div className="bg-red-50 border border-red-200 text-red-600 p-3 rounded-sm flex items-center gap-2 text-[13px] font-medium">
           <AlertCircle size={16} />
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 space-y-4">
-            <h2 className="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2 mb-4">
-              Basic Information
-            </h2>
-            
-            <div>
-              <label className="block text-xs font-semibold text-slate-600 mb-1.5">Course Title *</label>
-              <input 
-                type="text" 
-                required
-                value={formData.title}
-                onChange={handleTitleChange}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">URL Slug *</label>
-                <input 
-                  type="text" 
-                  required
-                  value={formData.slug}
-                  onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Category *</label>
-                <input 
-                  type="text" 
-                  required
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Price (INR) *</label>
-                <input 
-                  type="number" 
-                  required
-                  value={formData.inrPrice}
-                  onChange={(e) => setFormData({ ...formData, inrPrice: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Price (USD) *</label>
-                <input 
-                  type="number" 
-                  required
-                  value={formData.usdPrice}
-                  onChange={(e) => setFormData({ ...formData, usdPrice: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 space-y-4">
-            <h2 className="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2 mb-4">
-              Additional Details
-            </h2>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Provider / Institution</label>
-                <input 
-                  type="text" 
-                  value={formData.provider}
-                  onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Duration</label>
-                <input 
-                  type="text" 
-                  value={formData.duration}
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Cohort Starts</label>
-                <input 
-                  type="text" 
-                  value={formData.cohortStarts}
-                  onChange={(e) => setFormData({ ...formData, cohortStarts: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Badge</label>
-                <input 
-                  type="text" 
-                  value={formData.badge}
-                  onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                />
-              </div>
-            </div>
-          </div>
+      <div className="flex flex-col md:flex-row gap-6">
+        
+        <div className="w-full md:w-64 flex flex-col gap-1.5 shrink-0">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2.5 px-4 py-3 text-[13px] font-bold rounded-sm transition-all text-left ${
+                activeTab === tab.id 
+                  ? "bg-gray-900 text-white shadow-sm" 
+                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+              }`}
+            >
+              <tab.icon size={16} />
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        <div className="space-y-6">
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-5 space-y-4">
-            <h2 className="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">
-              Course Banner Image
-            </h2>
-            
-            {!formData.bannerImage ? (
-              <div className="border border-dashed border-slate-300 rounded-md p-6 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative min-h-[120px]">
-                <input 
-                  type="file" 
-                  accept="image/*"
-                  onChange={(e) => handleImageUpload(e, 'bannerImage')}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                />
-                <Upload size={20} className="text-primary mb-2" />
-                <p className="text-xs font-bold text-slate-600">Upload Banner</p>
-              </div>
-            ) : (
-              <div className="relative w-full rounded-md overflow-hidden border border-slate-200 group">
-                <img src={formData.bannerImage} alt="Banner" className="w-full h-[120px] object-cover" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button 
-                    type="button"
-                    onClick={() => removeImage('bannerImage')}
-                    className="bg-white text-red-600 p-1.5 rounded-md hover:bg-red-50 text-xs font-bold flex items-center gap-1"
-                  >
-                    <X size={14} /> Remove
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-5 space-y-4">
-            <h2 className="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">
-              Provider Logo
-            </h2>
-            
-            {!formData.logoImage ? (
-              <div className="border border-dashed border-slate-300 rounded-md p-6 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer relative min-h-[120px]">
-                <input 
-                  type="file" 
-                  accept="image/*"
-                  onChange={(e) => handleImageUpload(e, 'logoImage')}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                />
-                <Upload size={20} className="text-primary mb-2" />
-                <p className="text-xs font-bold text-slate-600">Upload Logo</p>
-              </div>
-            ) : (
-              <div className="relative w-full rounded-md overflow-hidden border border-slate-200 group flex items-center justify-center bg-slate-50 h-[120px]">
-                <img src={formData.logoImage} alt="Logo" className="max-h-[80px] max-w-[80px] object-contain" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button 
-                    type="button"
-                    onClick={() => removeImage('logoImage')}
-                    className="bg-white text-red-600 p-1.5 rounded-md hover:bg-red-50 text-xs font-bold flex items-center gap-1"
-                  >
-                    <X size={14} /> Remove
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="flex-1 min-h-[500px]">
+          {activeTab === "basic" && <BasicInfoTab formData={formData} setFormData={setFormData} setError={setError} />}
+          {activeTab === "hero" && <HeroSectionTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "overview" && <OverviewTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "curriculum" && <CurriculumTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "options" && <TrainingOptionsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "exam" && <ExamDetailsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "benefits" && <BenefitsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "tools" && <ToolsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "advisors" && <AdvisorTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "tools" && <ToolsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "faqs" && <FaqTab formData={formData} setFormData={setFormData} />}
         </div>
       </div>
     </div>

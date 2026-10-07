@@ -50,8 +50,26 @@ export default function RegisterPage() {
     setLoading(true);
     setError("");
 
+    if (!formData.firstName.trim()) {
+      setError("First name is required");
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.lastName.trim()) {
+      setError("Last name is required");
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      setError("Email address is required");
+      setLoading(false);
+      return;
+    }
+
     if (!phone || !isValidPhoneNumber(phone)) {
-      setError("Please enter a valid contact number");
+      setError("A valid contact number is required");
       setLoading(false);
       return;
     }
@@ -64,7 +82,13 @@ export default function RegisterPage() {
     }
 
     try {
-      const payload = { ...formData, contactNumber: phone };
+      const payload = { 
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        password: formData.password,
+        contactNumber: phone 
+      };
+
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -102,7 +126,6 @@ export default function RegisterPage() {
                 <label className="block text-[13px] text-gray-600 mb-1.5">First name<span className="text-red-500">*</span></label>
                 <input 
                   type="text" 
-                  required 
                   placeholder="First name"
                   value={formData.firstName}
                   className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
@@ -113,7 +136,6 @@ export default function RegisterPage() {
                 <label className="block text-[13px] text-gray-600 mb-1.5">Last name<span className="text-red-500">*</span></label>
                 <input 
                   type="text" 
-                  required 
                   placeholder="Last name"
                   value={formData.lastName}
                   className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
@@ -126,7 +148,6 @@ export default function RegisterPage() {
               <label className="block text-[13px] text-gray-600 mb-1.5">Email<span className="text-red-500">*</span></label>
               <input 
                 type="email" 
-                required 
                 placeholder="Email address"
                 value={formData.email}
                 className="w-full p-2.5 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
@@ -155,7 +176,6 @@ export default function RegisterPage() {
               <div className="relative">
                 <input 
                   type={showPassword ? "text" : "password"}
-                  required 
                   placeholder="Password"
                   value={formData.password}
                   className="w-full p-2.5 pr-20 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-[14px]"
@@ -207,10 +227,10 @@ export default function RegisterPage() {
           
           <div className="mt-8 text-center border-t border-gray-200 pt-6">
             <Link href="/login" className="text-[14px] text-primary hover:underline font-medium">
-                options
+               Already have an account? Sign in here!
             </Link>
             <p className="text-[13px] text-gray-500 mt-6">
-              © 2009-2026 - Mildain Trainings. All Rights Reserved. | <Link href="/privacy" className="hover:underline text-primary">Privacy Policy</Link>
+              © 2026 - Mildain Trainings. All Rights Reserved. | <Link href="/privacy" className="hover:underline text-primary">Privacy Policy</Link>
             </p>
           </div>
         </div>
@@ -219,26 +239,6 @@ export default function RegisterPage() {
       <div className="hidden lg:flex w-1/2 bg-slate-900 relative items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         <div className="absolute inset-0 bg-[url('/bg-banner.jpg')] bg-cover bg-center bg-no-repeat opacity-50"></div>
-        
-        <div className="relative z-20 w-full max-w-lg p-12 text-white">
-          <h2 className="text-[36px] font-bold leading-tight mb-2">Get Certified. Get Ahead.</h2>
-          <p className="text-[18px] mb-8 text-gray-200">Get started with your immersive learning experience</p>
-          
-          <ul className="space-y-4 text-[16px] font-medium text-gray-100">
-            <li className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
-              15M+ careers advanced
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
-              2000 Live classes every month
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary block"></span>
-              85% report promotion or a new job
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   );

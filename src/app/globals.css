@@ -1,4 +1,6 @@
+
 @import 'react-phone-number-input/style.css';
+@import "react-quill-new/dist/quill.snow.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -71,9 +73,9 @@
     @apply text-primary transition-opacity hover:opacity-80 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }
 
-  ::selection {
+  /* ::selection {
     @apply bg-primary/20 text-primary;
-  }
+  } */
 
   ::-webkit-scrollbar {
     @apply w-2 h-2;
