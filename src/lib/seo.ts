@@ -13,7 +13,6 @@ export async function getDynamicSeoMetadata(currentPath: string, defaultMetadata
     }).lean();
 
     if (seoData) {
-      // FIX: Base64 image ko OpenGraph URL banne se roko
       const isBase64Og = seoData.ogImage && seoData.ogImage.startsWith('data:image');
       
       return {

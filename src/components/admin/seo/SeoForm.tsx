@@ -59,8 +59,6 @@ export default function SeoForm({ initialData, editingId, onClose, onSuccess }: 
       setSubmitLoading(false);
     }
   };
-
-  // Check if we have an image to show (Custom uploaded OG OR Default Course Image)
   const displayImage = formData.ogImage || formData.defaultImage;
   const isDefaultImage = !formData.ogImage && formData.defaultImage;
 

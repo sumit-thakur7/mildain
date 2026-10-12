@@ -53,7 +53,6 @@ export default function ExamDetailsTab({ formData, setFormData }: { formData: an
         </div>
       </div>
 
-      {/* NAYA SECTION: Exam Format Details */}
       <div className="border-b border-gray-100 pb-6">
         <h2 className="text-[12px] font-bold text-gray-900 uppercase tracking-wider mb-4">
           Exam Info Specifications

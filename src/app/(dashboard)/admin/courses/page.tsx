@@ -88,7 +88,6 @@ export default function AdminCoursesPage() {
   return (
     <div className="space-y-5">
       
-      {/* Top Stats */}
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-white p-4 border border-gray-200 rounded-sm">
           <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Total Courses</p>
@@ -104,7 +103,6 @@ export default function AdminCoursesPage() {
         </div>
       </div>
 
-      {/* Action Bar */}
       <div className="bg-white p-3 border border-gray-200 rounded-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center bg-white border border-gray-300 px-3 py-1.5 w-full max-w-sm">
           <Search size={14} className="text-gray-400" />
@@ -125,7 +123,6 @@ export default function AdminCoursesPage() {
         </Link>
       </div>
 
-      {/* Table */}
       <div className="bg-white border border-gray-200 rounded-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -190,7 +187,6 @@ export default function AdminCoursesPage() {
           </table>
         </div>
 
-        {/* Pagination Controls */}
         {!loading && totalPages > 1 && (
           <div className="px-4 py-3 border-t border-gray-200 flex items-center justify-between bg-gray-50">
             <span className="text-[12px] text-gray-500">

@@ -15,24 +15,20 @@ export default function SeoTable({ pageList, loading, onOpenForm }: SeoTableProp
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Jab bhi tab ya search change ho, page 1 par wapas le aao
   useEffect(() => {
     setCurrentPage(1);
   }, [activeTab, searchQuery]);
 
-  // Pehle search query se filter karo
   const searchFilteredPages = pageList.filter(page => 
     page.pageName.toLowerCase().includes(searchQuery.toLowerCase()) || 
     page.pageUrl.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Phir Tab ke hisaab se filter karo
   const tabFilteredPages = searchFilteredPages.filter(page => {
     if (activeTab === "main") return !page.pageUrl.includes('/courses/');
     return page.pageUrl.includes('/courses/');
   });
 
-  // Pagination Logic
   const totalPages = Math.ceil(tabFilteredPages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = tabFilteredPages.slice(startIndex, startIndex + itemsPerPage);
@@ -40,7 +36,6 @@ export default function SeoTable({ pageList, loading, onOpenForm }: SeoTableProp
   return (
     <div className="w-full space-y-6 animate-in fade-in duration-300">
       
-      {/* Header & Search */}
       <div className="flex flex-col md:flex-row items-center justify-between bg-white p-5 border border-gray-200 rounded-sm shadow-sm gap-4">
         <div>
           <h1 className="text-xl font-extrabold text-gray-900 tracking-tight">SEO Manager</h1>
@@ -66,7 +61,6 @@ export default function SeoTable({ pageList, loading, onOpenForm }: SeoTableProp
       ) : (
         <div className="bg-white border border-gray-200 rounded-sm shadow-sm overflow-hidden">
           
-          {/* Custom Tabs */}
           <div className="flex items-center border-b border-gray-200 bg-gray-50/50 px-2 pt-2">
             <button
               onClick={() => setActiveTab("main")}
@@ -98,7 +92,6 @@ export default function SeoTable({ pageList, loading, onOpenForm }: SeoTableProp
             </button>
           </div>
 
-          {/* Table */}
           <div className="overflow-x-auto min-h-[400px]">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -153,7 +146,6 @@ export default function SeoTable({ pageList, loading, onOpenForm }: SeoTableProp
             </table>
           </div>
 
-          {/* Pagination Controls */}
           <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3 bg-gray-50/50">
             <div className="text-[12px] text-gray-500 font-medium">
               Showing <span className="font-bold text-gray-900">{tabFilteredPages.length > 0 ? startIndex + 1 : 0}</span> to <span className="font-bold text-gray-900">{Math.min(startIndex + itemsPerPage, tabFilteredPages.length)}</span> of <span className="font-bold text-gray-900">{tabFilteredPages.length}</span> entries

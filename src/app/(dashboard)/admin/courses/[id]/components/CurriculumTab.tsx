@@ -3,11 +3,8 @@
 import { X, Plus, Upload, FileSpreadsheet } from "lucide-react";
 import dynamic from "next/dynamic";
 import * as XLSX from "xlsx";
-
 // @ts-ignore
 import "react-quill-new/dist/quill.snow.css";
-
-// @ts-ignore
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false }) as any;
 
 export default function CurriculumTab({ formData, setFormData }: { formData: any, setFormData: any }) {

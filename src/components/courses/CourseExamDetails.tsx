@@ -53,7 +53,7 @@ export default function CourseExamDetails({ course }: { course?: any }) {
               { icon: FileQuestion, title: "QUESTION TYPES", desc: course?.examQuestionTypes },
               { icon: Globe2, title: "AVAILABLE LANGUAGES", desc: course?.examLanguages }
             ].map((item, idx) => {
-              if (!item.desc) return null; // Agar koi data na dala ho to wo line hide ho jayegi
+              if (!item.desc) return null;
               return (
                 <div key={idx} className="bg-[#10b981] rounded-lg p-4 flex items-center gap-4 text-white hover:bg-[#0ea5e9] transition-colors duration-300">
                   <div className="w-12 h-12 border border-white/30 rounded-md flex items-center justify-center shrink-0">
