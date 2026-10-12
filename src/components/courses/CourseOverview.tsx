@@ -143,7 +143,7 @@ export default function CourseOverview({ course }: { course?: any }) {
   const keyPoints = course.overviewKeyPoints || [];
   const skillsCovered = course.overviewSkillsCovered || [];
   
-  const image = course.overviewImage || "/images/home/hero1.png";
+  const image = course.overviewImage ;
   const imageAlt = course.overviewImageAlt || heading;
   const imageTitle = course.overviewImageTitle || heading;
 

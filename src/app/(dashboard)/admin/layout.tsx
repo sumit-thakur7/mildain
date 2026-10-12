@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Search, LayoutDashboard, BookOpen, Users, Receipt, Tag, Settings, LogOut, ShieldCheck } from "lucide-react";
+import { Bell, Search, LayoutDashboard, BookOpen, Users, Receipt, Tag, Settings, LogOut, ShieldCheck, Layers } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -22,16 +22,20 @@ function AdminSidebar() {
 
   const navItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+    { name: "SEO Management", href: "/admin/seo", icon: Search },
     { name: "Manage Courses", href: "/admin/courses", icon: BookOpen },
-    { name: "Users & Students", href: "/admin/users", icon: Users },
+    { name: "Categories", href: "/admin/categories", icon: Layers },
+    { name: "Users", href: "/admin/users", icon: Users },
     { name: "Transactions", href: "/admin/transactions", icon: Receipt },
+    { name: "Inquiries", href: "/admin/inquiries", icon: Users },
     { name: "Coupons & Offers", href: "/admin/coupons", icon: Tag },
-    { name: "Settings", href: "/admin/settings", icon: Settings },
+    { name: "Settings", href: "/admin/settings", icon: Settings }, 
+
   ];
 
   return (
-    <div className="w-64 bg-[#0a0f1c] text-gray-300 flex flex-col min-h-screen sticky top-0 border-r border-gray-800">
-      <div className="h-20 flex items-center px-6 border-b border-gray-800/60">
+    <div className="w-64 bg-[#0a0f1c] text-gray-300 flex flex-col h-full shrink-0 border-r border-gray-800">
+      <div className="h-20 shrink-0 flex items-center px-6 border-b border-gray-800/60">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-white text-[#0a0f1c] rounded-lg flex items-center justify-center shadow-sm">
             <ShieldCheck size={20} className="stroke-[2.5]" />
@@ -40,9 +44,9 @@ function AdminSidebar() {
         </div>
       </div>
       
-      <div className="py-6 px-3 space-y-1.5">
+      <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1.5 custom-scrollbar">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
             <Link
               key={item.name}
@@ -60,7 +64,7 @@ function AdminSidebar() {
         })}
       </div>
 
-      <div className="p-4 border-t border-gray-800/60">
+      <div className="p-4 shrink-0 border-t border-gray-800/60">
         <button
           onClick={handleLogout}
           className="flex items-center gap-3 px-3 py-2.5 w-full rounded-md text-[14px] font-medium text-gray-400 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200"
@@ -77,12 +81,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen bg-[#f8f9fa]">
+    <div className="flex h-screen overflow-hidden bg-[#f8f9fa]">
       
       <AdminSidebar />
 
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-40">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+        <header className="h-20 shrink-0 bg-white border-b border-gray-200 flex items-center justify-between px-8 z-10">
           <div className="flex items-center bg-gray-100/70 border border-gray-200/80 rounded-full px-4 py-2.5 w-[400px] focus-within:ring-2 focus-within:ring-gray-200 focus-within:bg-white transition-all">
             <Search size={16} className="text-gray-400" />
             <input 
@@ -110,11 +114,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <p className="text-[14px] font-semibold text-gray-700">Mildain</p>
               </div>
             </div>
-            
           </div>
         </header>
 
-        <main className="flex-1 p-8 overflow-y-auto">
+        <main className="flex-1 p-8 overflow-y-auto relative">
           <div className="max-w-7xl mx-auto">
             {children}
           </div>

@@ -86,6 +86,10 @@
 // );
 
 // export default mongoose.models.Course || mongoose.model("Course", courseSchema);
+
+
+
+
 import mongoose from "mongoose";
 
 const courseSchema = new mongoose.Schema(
@@ -197,6 +201,45 @@ const courseSchema = new mongoose.Schema(
       imageAlt: { type: String },
       imageTitle: { type: String }
     }],
+    careerSupportTitle: { type: String },
+    careerSupportDescription: { type: String },
+    careerSupportBrochurePdf: { type: String },
+    careerSupportItems: [{
+      title: { type: String },
+      image: { type: String },
+      imageAlt: { type: String },
+      imageTitle: { type: String }
+    }],
+    successVideoImage: { type: String },
+    successVideoImageAlt: { type: String },
+    successVideoImageTitle: { type: String },
+    successVideoUrl: { type: String },
+    reviews: [{
+      name: { type: String },
+      role: { type: String },
+      quote: { type: String },
+      text: { type: String },
+      image: { type: String },
+      imageAlt: { type: String },
+      imageTitle: { type: String },
+      logo: { type: String },
+      logoAlt: { type: String },
+      logoTitle: { type: String }
+    }],
+    pathSalariesDescription: { type: String },
+    selectedCategory: { type: String },
+    
+    roles: [{
+      roleName: { type: String },
+      salaryInr: { type: String },
+      salaryUsd: { type: String }
+    }],
+
+    selectedPathRoles: [{
+      roleName: { type: String },
+      salaryInr: { type: String },
+      salaryUsd: { type: String }
+    }],
 
     faqHeading: { type: String },
     faqs: [{
@@ -208,8 +251,6 @@ const courseSchema = new mongoose.Schema(
         linkUrl: { type: String }
       }]
     }]
-
-    
   },
   { timestamps: true }
 );

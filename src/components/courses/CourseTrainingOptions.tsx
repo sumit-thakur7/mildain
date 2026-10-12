@@ -114,8 +114,6 @@
 // }
 
 
-
-
 'use client';
 
 import React from 'react';
@@ -157,12 +155,17 @@ export default function CourseTrainingOptions({ course, priceDetails }: { course
           
           <div className="bg-[#f0f6ff] rounded-2xl overflow-hidden border border-blue-100 flex flex-col">
             <div className="relative h-[240px] w-full overflow-hidden">
-              <img 
-                src={card1Image} 
-                alt={card1ImageAlt} 
-                title={card1ImageTitle}
-                className="w-full h-full object-cover"
-              />
+              
+              {/* SIRF YAHAN CHECK LAGAYA HAI TAQI EMPTY STRING CRASH NA KARE */}
+              {card1Image ? (
+                <img 
+                  src={card1Image} 
+                  alt={card1ImageAlt} 
+                  title={card1ImageTitle}
+                  className="w-full h-full object-cover"
+                />
+              ) : null}
+
               {badgeText && (
                 <div className="absolute bottom-4 right-4 bg-[#10b981] text-white text-[12px] font-bold px-3 py-1 rounded-full tracking-wide uppercase">
                   {badgeText}

@@ -23,10 +23,8 @@ export default function HeroSectionTab({ formData, setFormData }: { formData: an
     <div className="bg-white border border-gray-200 rounded-sm shadow-sm p-6 space-y-6">
       
       <div className="border-b border-gray-100 pb-6 mb-6">
-        <h2 className="text-[12px] font-bold text-gray-900 uppercase tracking-wider mb-4">
-          SEO Meta Settings
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="md:col-span-2">
             <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Meta Title</label>
             <input 
@@ -45,7 +43,7 @@ export default function HeroSectionTab({ formData, setFormData }: { formData: an
               className="w-full px-3 py-2 bg-white border border-gray-300 rounded-sm focus:border-gray-900 focus:ring-1 focus:ring-gray-900 outline-none transition-all text-[13px] resize-none"
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <h2 className="text-[12px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-100 pb-2">

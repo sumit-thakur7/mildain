@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, AlertCircle, FileText, Layout, List, BookOpen, HelpCircle, DollarSign, Award, Wrench, Users } from "lucide-react";
+import { ArrowLeft, Save, AlertCircle, FileText, Layout, List, BookOpen, HelpCircle, DollarSign, Award, Wrench, Users, Briefcase, Star, TrendingUp } from "lucide-react";
 import BasicInfoTab from "./components/BasicInfoTab";
 import HeroSectionTab from "./components/HeroSectionTab";
 import OverviewTab from "./components/OverviewTab";
@@ -14,6 +14,9 @@ import BenefitsTab from "./components/BenefitsTab";
 import ToolsTab from "./components/ToolsTab";
 import FaqTab from "./components/FaqTab";
 import AdvisorTab from "./components/AdvisorTab";
+import CareerSupportTab from "./components/CareerSupportTab";
+import ReviewsTab from "./components/ReviewsTab";
+import PathSalariesTab from "./components/PathSalariesTab";
 
 export default function EditCoursePage() {
   const router = useRouter();
@@ -96,8 +99,21 @@ export default function EditCoursePage() {
     toolsList: [] as any[],
     advisorHeading: "",
     advisors: [] as any[],
+    careerSupportTitle: "",
+    careerSupportDescription: "",
+    careerSupportBrochurePdf: "",
+    careerSupportItems: [] as any[],
+    successVideoImage: "",
+    successVideoImageAlt: "",
+    successVideoImageTitle: "",
+    successVideoUrl: "",
+    reviews: [] as any[],
     faqHeading: "",
     faqs: [] as any[],
+    pathSalariesDescription: "",
+    selectedCategory: "",
+    roles: "",
+    selectedPathRoles: [] as any[]
   });
 
   useEffect(() => {
@@ -179,8 +195,21 @@ export default function EditCoursePage() {
             toolsList: data.toolsList || [],
             advisorHeading: data.advisorHeading || "",
             advisors: data.advisors || [],
+            careerSupportTitle: data.careerSupportTitle || "",
+            careerSupportDescription: data.careerSupportDescription || "",
+            careerSupportBrochurePdf: data.careerSupportBrochurePdf || "",
+            careerSupportItems: data.careerSupportItems || [],
+            successVideoImage: data.successVideoImage || "",
+            successVideoImageAlt: data.successVideoImageAlt || "",
+            successVideoImageTitle: data.successVideoImageTitle || "",
+            successVideoUrl: data.successVideoUrl || "",
+            reviews: data.reviews || [],
             faqHeading: data.faqHeading || "",
             faqs: data.faqs || [],
+            pathSalariesDescription: data.pathSalariesDescription || "",
+            selectedCategory: data.selectedCategory || "",
+            roles: data.roles || "",
+            selectedPathRoles: data.selectedPathRoles || []
           });
         }
       } catch (err) {
@@ -270,8 +299,21 @@ export default function EditCoursePage() {
           toolsList: formData.toolsList,
           advisorHeading: formData.advisorHeading,
           advisors: formData.advisors,
+          careerSupportTitle: formData.careerSupportTitle,
+          careerSupportDescription: formData.careerSupportDescription,
+          careerSupportBrochurePdf: formData.careerSupportBrochurePdf,
+          careerSupportItems: formData.careerSupportItems,
+          successVideoImage: formData.successVideoImage,
+          successVideoImageAlt: formData.successVideoImageAlt,
+          successVideoImageTitle: formData.successVideoImageTitle,
+          successVideoUrl: formData.successVideoUrl,
+          reviews: formData.reviews,
           faqHeading: formData.faqHeading,
           faqs: formData.faqs,
+          pathSalariesDescription: formData.pathSalariesDescription,
+          selectedCategory: formData.selectedCategory,
+          roles: formData.roles,
+          selectedPathRoles: formData.selectedPathRoles
         }),
       });
 
@@ -304,6 +346,9 @@ export default function EditCoursePage() {
     { id: "benefits", label: "Benefits & Roles", icon: FileText },
     { id: "tools", label: "Tools Covered", icon: Wrench },
     { id: "advisors", label: "Course Advisors", icon: Users },
+    { id: "careerSupport", label: "Career Support", icon: Briefcase },
+    { id: "pathSalaries", label: "Path & Salaries", icon: TrendingUp },
+    { id: "reviews", label: "Student Reviews", icon: Star },
     { id: "faqs", label: "FAQs & Reviews", icon: HelpCircle },
   ];
 
@@ -368,7 +413,9 @@ export default function EditCoursePage() {
           {activeTab === "benefits" && <BenefitsTab formData={formData} setFormData={setFormData} />}
           {activeTab === "tools" && <ToolsTab formData={formData} setFormData={setFormData} />}
           {activeTab === "advisors" && <AdvisorTab formData={formData} setFormData={setFormData} />}
-          {activeTab === "tools" && <ToolsTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "careerSupport" && <CareerSupportTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "pathSalaries" && <PathSalariesTab formData={formData} setFormData={setFormData} />}
+          {activeTab === "reviews" && <ReviewsTab formData={formData} setFormData={setFormData} />}
           {activeTab === "faqs" && <FaqTab formData={formData} setFormData={setFormData} />}
         </div>
       </div>
