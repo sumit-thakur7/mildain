@@ -17,13 +17,11 @@ export async function POST(req: Request) {
 
     const user = await User.findOne({ email });
     if (!user) {
-      console.log("LOGIN ERROR: User not found in database for email:", email);
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      console.log("LOGIN ERROR: Password does not match for email:", email);
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
@@ -63,7 +61,6 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Login error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

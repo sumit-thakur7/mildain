@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
+import { sendWelcomeLoginEmail } from "@/lib/mailer";
 
 export async function POST(req: Request) {
   try {
@@ -42,6 +43,8 @@ export async function POST(req: Request) {
     });
 
     await newUser.save();
+
+    await sendWelcomeLoginEmail(email, name);
 
     return NextResponse.json(
       { message: "Registration successful" },
